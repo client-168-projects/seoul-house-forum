@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# project-local docs / mockups (not meant to be tracked)
+CLAUDE.md
+/temp

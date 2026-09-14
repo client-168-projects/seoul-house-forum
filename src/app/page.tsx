@@ -1,69 +1,115 @@
 import Image from "next/image";
+import { Container } from "@/components/common/Container";
+import { Button } from "@/components/ui/Button";
+import { EVENT_INFO } from "@/data/event";
+import { HeroAssetDevPanel } from "@/components/dev/HeroAssetDevPanel";
 
-export default function Home() {
+/**
+ * 홈 히어로. 목업(temp/home.png) 기준 1920px 프레임 수치
+ * - 섹션 높이 761px, 배경 primary-600 → primary-900 세로 그라디언트
+ * - 타이틀 Gmarket Sans Bold 64px(행간 1.2, 자간 -3%) / 일시 SUIT ExtraBold 44px / 장소 16px
+ * - CTA 170x42px, 캐러셀 화살표 54px 원형(컨테이너 좌우 끝, 하단에서 41px)
+ * - 텍스트는 상단(pt 172px), 일러스트는 컨테이너 우측 끝 + 섹션 하단 기준
+ * - 좌/우 장식(도로·건물 SVG)은 화면 양 끝에 전체 폭으로 깔린다.
+ */
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <section className="relative flex grow flex-col overflow-hidden bg-hero-gradient pb-24 text-white lg:h-[760px] lg:pb-0">
+      <HeroAssetDevPanel />
+
+      <Container padded={false} className="relative flex grow flex-col px-5 sm:px-8 xl:px-0">
+
+        <div className="relative z-10 pt-[100px] sm:pt-[120px] lg:pt-[clamp(153px,calc(153px_+_(100vw_-_1920px)*0.109375),223px)]">
+          <Image
+            src="/images/hero/logos/logo-with-brackets.svg"
+            alt={EVENT_INFO.name}
+            width={251}
+            height={39}
+            priority
+            className="h-auto w-[200px] lg:w-[251px]"
+          />
+
+          <h1
+            className="mt-4 font-heading font-bold tracking-[-0.03em] lg:mt-[16px]"
+            style={{
+              fontSize: "clamp(32px, calc(64px + (100vw - 1920px) * 0.025), 80px)",
+              lineHeight: 1.2,
+            }}
+          >
+            {EVENT_INFO.themeLines.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <div
+            className="mt-4 font-extrabold lg:mt-[16px]"
+            style={{
+              fontSize: "clamp(24px, calc(44px + (100vw - 1920px) * 0.01875), 56px)",
+              lineHeight: 1.04,
+            }}
+          >
+            <p className="flex items-end gap-1">
+              <span>{EVENT_INFO.date}</span>
+              <span className="pb-[9px] text-[16px] leading-[1.5]">({EVENT_INFO.day})</span>
+            </p>
+            <p>{EVENT_INFO.time}</p>
+          </div>
+
+          <p className="mt-2 text-body font-extrabold lg:mt-[8px]">
+            {EVENT_INFO.venue}
           </p>
+
+          <Button variant="accent" href="/register" className="mt-8 w-[170px] lg:mt-[40px]">
+            사전등록 바로가기
+            <ArrowRightIcon />
+          </Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </Container>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-[40px] hidden lg:block">
+        <Container padded={false} className="flex justify-between">
+          <CarouselButton direction="prev" />
+          <CarouselButton direction="next" />
+        </Container>
+      </div>
+    </section>
+  );
+}
+
+/** 슬라이드가 1개뿐이라 현재는 비활성 상태로만 노출한다. */
+function CarouselButton({ direction }: { direction: "prev" | "next" }) {
+  return (
+    <button
+      type="button"
+      disabled
+      aria-label={direction === "prev" ? "이전 슬라이드" : "다음 슬라이드"}
+      className="pointer-events-auto flex h-[56px] w-[56px] items-center justify-center rounded-full bg-white/40 text-white shadow-[0px_2px_10px_0px_rgba(28,28,28,0.15)] disabled:opacity-100"
+    >
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d={direction === "prev" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+}
+
+function ArrowRightIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4 12h15m0 0l-6-6m6 6l-6 6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
