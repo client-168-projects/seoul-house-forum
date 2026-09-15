@@ -11,8 +11,9 @@ import { cn } from "@/utils/cn";
 /**
  * 목업(temp/header.png) 기준 수치 (1920px 프레임)
  * - 로고 컬럼 250px + 메뉴 4컬럼 각 237.5px (= 1200px 컨테이너)
- * - 로고 상단 여백 31px(22px 2줄), 1depth 16px는 상단 여백 43px로 로고와 중앙 정렬
- * - 메가메뉴 펼침 시 흰 패널 전체 높이 240px, 2depth 15px·행 간격 29px
+ * - 로고 상단 여백 31px(22px 2줄), 1depth는 상단 여백 43px로 로고와 중앙 정렬
+ * - 메가메뉴 펼침 시 흰 패널 전체 높이 240px, 2depth 행 간격 29px
+ * - 타이포는 피그마 기준: 1depth SHF/Body2_bold(16px/150%/800), 2depth SHF/Small_bold(14px/150%/700)
  */
 const WHITE_LOGO = "/images/hero/logos/logo-white.svg";
 const PURPLE_LOGO = "/images/hero/logos/logo-purple.svg";
@@ -32,7 +33,7 @@ export function Header() {
       )}
       onMouseLeave={() => setHoveredIndex(null)}
     >
-      <Container padded={false} className="relative px-5 sm:px-8 xl:px-0">
+      <Container padded={false} className="relative px-12 min-[1296px]:px-0">
         <div className="grid grid-cols-[1fr_auto] lg:grid-cols-[250px_repeat(4,minmax(0,1fr))]">
           <Link
             href="/"
@@ -66,7 +67,7 @@ export function Header() {
                   href={group.href}
                   onFocus={() => setHoveredIndex(index)}
                   className={cn(
-                    "inline-block text-body font-bold",
+                    "inline-block text-body font-extrabold",
                     highlighted
                       ? "text-primary-950 underline underline-offset-[7px]"
                       : expanded
@@ -92,7 +93,7 @@ export function Header() {
                           onFocus={() => setHoveredIndex(index)}
                           onClick={() => setHoveredIndex(null)}
                           className={cn(
-                            "text-caption hover:text-primary-950",
+                            "text-caption font-bold hover:text-primary-950",
                             current
                               ? "text-primary-950 underline underline-offset-[5px]"
                               : "text-ink-soft",
@@ -128,7 +129,7 @@ export function Header() {
           <Container className="flex flex-col py-2">
             {NAV_GROUPS.map((group) => (
               <details key={group.label} className="group/details border-b border-white/10">
-                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-body font-bold text-white marker:content-none">
+                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-body font-extrabold text-white marker:content-none">
                   {group.label}
                   <ChevronIcon />
                 </summary>
@@ -138,7 +139,7 @@ export function Header() {
                       <Link
                         href={child.href}
                         onClick={() => setMobileOpen(false)}
-                        className="block min-h-11 py-2.5 pl-4 text-caption text-primary-100 hover:bg-white/10"
+                        className="block min-h-11 py-2.5 pl-4 text-caption font-bold text-primary-100 hover:bg-white/10"
                       >
                         {child.label}
                       </Link>

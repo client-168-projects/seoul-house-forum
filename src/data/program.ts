@@ -93,6 +93,7 @@ export const AGENDA_GROUPS: AgendaGroup[] = [
 export const SPEAKERS: Speaker[] = [
   {
     id: "lee-changmoo",
+    photo: { src: "/images/speakers/lee-changmoo.webp", width: 943, height: 1080 },
     name: "이창무",
     affiliation: "서울특별시 총괄 건축가",
     sessionLabel: "기조발제",
@@ -103,6 +104,7 @@ export const SPEAKERS: Speaker[] = [
   },
   {
     id: "kim-junhyung",
+    photo: { src: "/images/speakers/kim-junhyung.webp", width: 1140, height: 1080 },
     name: "김준형",
     affiliation: "명지대학교 교수",
     sessionLabel: "주제발표1",
@@ -112,6 +114,7 @@ export const SPEAKERS: Speaker[] = [
   },
   {
     id: "lee-sangyoung",
+    photo: { src: "/images/speakers/lee-sangyoung.webp", width: 1156, height: 1080 },
     name: "이상영",
     affiliation: "명지대학교 교수",
     sessionLabel: "주제발표2",
@@ -121,6 +124,7 @@ export const SPEAKERS: Speaker[] = [
   },
   {
     id: "cho-kangtae",
+    photo: { src: "/images/speakers/cho-kangtae.webp", width: 1156, height: 1080 },
     name: "조강태",
     affiliation: "MGRV 대표",
     sessionLabel: "주제발표3",

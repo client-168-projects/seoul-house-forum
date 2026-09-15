@@ -10,7 +10,7 @@ const INFO_ROWS = [
 
 /**
  * 목업 기준 수치 (1920px 프레임)
- * - 배경 #ededed, 상단 여백 60px, 로고 26px, 정보 15px·행 간격 29px
+ * - 배경 #ededed, 상단 여백 60px, 브라켓 로고 251x39, 정보 15px·행 간격 29px
  * - 하단 구분선은 화면 전체 폭(full bleed) 1px primary-600
  */
 export function Footer() {
@@ -18,9 +18,13 @@ export function Footer() {
     <footer className="bg-footer-bg text-ink">
       <Container className="grid gap-10 pt-10 pb-9 lg:grid-cols-2 lg:pt-[60px] lg:pb-[37px]">
         <div>
-          <p className="font-heading text-subtitle">
-            「{EVENT_INFO.name}」
-          </p>
+          <Image
+            src="/images/hero/logos/logo-with-brackets-dark.svg"
+            alt={EVENT_INFO.name}
+            width={251}
+            height={39}
+            className="h-auto w-[200px] lg:w-[251px]"
+          />
           <dl className="mt-[21px] text-caption">
             {INFO_ROWS.map((row) => (
               <div key={row.label} className="flex gap-[10px] py-[4.5px]">

@@ -13,13 +13,13 @@ export default function ForumIntroPage() {
     <>
       <Breadcrumb items={["2026 서울주거포럼", "소개"]} />
       <Container className="pt-14 pb-24 text-center lg:pt-[72px] lg:pb-[242px]">
-        <h2 className="font-heading text-section-title text-ink">
+        <h2 className="text-section-title text-ink">
           {INTRO_CONTENT.heading}
         </h2>
-        <p className="mt-5 font-heading text-subtitle text-primary-800 lg:mt-[30px]">
+        <p className="mt-5 text-subtitle text-primary-800 lg:mt-[30px]">
           {INTRO_CONTENT.subheading}
         </p>
-        <div className="mt-8 text-body font-bold text-ink lg:mt-[43px]">
+        <div className="mt-8 text-body-lg font-bold text-ink lg:mt-[43px]">
           {INTRO_CONTENT.lines.map((line, index) => (
             <p key={`${line}-${index}`}>{line}</p>
           ))}

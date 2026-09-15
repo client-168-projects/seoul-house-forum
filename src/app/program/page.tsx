@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { Button } from "@/components/ui/Button";
 import { AGENDA_GROUPS } from "@/data/program";
 import { EVENT_INFO } from "@/data/event";
@@ -23,19 +24,19 @@ export default function ProgramPage() {
       <Breadcrumb items={["프로그램", "프로그램"]} />
       <Container className="pt-12 pb-24 lg:pt-[77px] lg:pb-[240px]">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <h2 className="font-heading text-section-title text-ink">
+          <h2 className="text-section-title text-ink">
             {EVENT_INFO.dateLabel}
           </h2>
-          <Button variant="accent" href="#" title="자료집 파일 준비 중입니다">
+          <Button variant="primaryStrong" href="#" title="자료집 파일 준비 중입니다">
             2026 서울주거포럼 자료집 다운로드
-            <DownloadIcon />
+            <ArrowIcon direction="down" />
           </Button>
         </div>
 
         <ol className="mt-10 lg:mt-[38px]">
-          {AGENDA_GROUPS.map((group) => (
+          {AGENDA_GROUPS.map((group, groupIndex) => (
             <li
-              key={`${group.start}${group.entries[0].label}`}
+              key={`${group.start}-${groupIndex}`}
               className="grid grid-cols-1 border-t border-line py-2 lg:grid-cols-[144px_1fr] lg:py-4"
             >
               <p className="pt-5 text-caption text-ink-muted lg:py-[26px]">
@@ -46,30 +47,30 @@ export default function ProgramPage() {
               <div>
                 {group.entries.map((entry, index) => (
                   <div
-                    key={entry.label}
+                    key={`${entry.label}-${index}`}
                     className={cn(
                       "grid grid-cols-1 gap-y-2 pt-5 lg:grid-cols-[196px_1fr] lg:gap-y-0 lg:pt-[26px]",
                       entry.title ? "pb-8 lg:pb-[51px]" : "pb-5 lg:pb-[26px]",
                       index > 0 && "border-t border-line-soft",
                     )}
                   >
-                    <p className="text-body font-bold text-primary-800">
+                    <p className="text-body-lg font-bold text-primary-800">
                       {entry.label}
                     </p>
 
                     <div>
                       {entry.title && (
-                        <p className="font-heading text-subtitle text-primary-800">
+                        <p className="text-subtitle text-primary-800">
                           {entry.title}
                         </p>
                       )}
 
                       {entry.presenters && (
                         <ul className={cn("space-y-4 lg:space-y-[32px]", entry.title && "mt-3 lg:mt-[18px]")}>
-                          {entry.presenters.map((presenter) => (
+                          {entry.presenters.map((presenter, presenterIndex) => (
                             <li
-                              key={`${presenter.name}-${presenter.affiliation ?? ""}`}
-                              className="text-body"
+                              key={`${presenter.name}-${presenterIndex}`}
+                              className="text-body-lg"
                             >
                               <span className="font-bold text-ink">{presenter.name}</span>
                               {presenter.affiliation && (
@@ -83,7 +84,7 @@ export default function ProgramPage() {
                       )}
 
                       {entry.note && (
-                        <p className="text-body text-ink-soft">
+                        <p className="text-body-lg text-ink-soft">
                           {entry.note}
                         </p>
                       )}
@@ -96,19 +97,5 @@ export default function ProgramPage() {
         </ol>
       </Container>
     </>
-  );
-}
-
-function DownloadIcon() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 4v13m0 0l-5-5m5 5l5-5M5 20h14"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

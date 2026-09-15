@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
 import Image from "next/image";
-import { AssetPlaceholder } from "@/components/common/AssetPlaceholder";
+import { PosterViewer } from "@/components/forum/PosterViewer";
 import { EVENT_INFO } from "@/data/event";
 import { cn } from "@/utils/cn";
 
@@ -68,7 +68,7 @@ export default function ForumOverviewPage() {
                       {row.tag}
                     </span>
                   </dt>
-                  <dd className="text-body font-bold text-ink">
+                  <dd className="text-h4 text-ink">
                     {row.value}
                   </dd>
                 </div>
@@ -76,10 +76,7 @@ export default function ForumOverviewPage() {
             })}
           </dl>
 
-          <AssetPlaceholder
-            assetId="event-poster"
-            aspectClassName="aspect-[1/1.414] w-full max-w-[274px]"
-          />
+          <PosterViewer alt={`${EVENT_INFO.name} 포스터`} />
         </div>
       </Container>
     </>

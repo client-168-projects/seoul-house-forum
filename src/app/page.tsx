@@ -3,6 +3,7 @@ import { Container } from "@/components/common/Container";
 import { Button } from "@/components/ui/Button";
 import { EVENT_INFO } from "@/data/event";
 import { HeroAssetDevPanel } from "@/components/dev/HeroAssetDevPanel";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 
 /**
  * 홈 히어로. 목업(temp/home.png) 기준 1920px 프레임 수치
@@ -17,7 +18,7 @@ export default function HomePage() {
     <section className="relative flex grow flex-col overflow-hidden bg-hero-gradient pb-24 text-white lg:h-[760px] lg:pb-0">
       <HeroAssetDevPanel />
 
-      <Container padded={false} className="relative flex grow flex-col px-5 sm:px-8 xl:px-0">
+      <Container padded={false} className="relative flex grow flex-col px-12 min-[1296px]:px-0">
 
         <div className="relative z-10 pt-[100px] sm:pt-[120px] lg:pt-[clamp(153px,calc(153px_+_(100vw_-_1920px)*0.109375),223px)]">
           <Image
@@ -61,9 +62,9 @@ export default function HomePage() {
             {EVENT_INFO.venue}
           </p>
 
-          <Button variant="accent" href="/register" className="mt-8 w-[170px] lg:mt-[40px]">
+          <Button variant="primaryStrong" href="/register" className="mt-8 lg:mt-[40px]">
             사전등록 바로가기
-            <ArrowRightIcon />
+            <ArrowIcon />
           </Button>
         </div>
       </Container>
@@ -97,19 +98,5 @@ function CarouselButton({ direction }: { direction: "prev" | "next" }) {
         />
       </svg>
     </button>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M4 12h15m0 0l-6-6m6 6l-6 6"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

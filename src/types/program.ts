@@ -19,8 +19,16 @@ export interface AgendaGroup {
   entries: AgendaEntry[];
 }
 
+/** 배경이 제거된 인물 컷아웃. 카드/모달에서 하단 정렬로 배치한다. */
+export interface SpeakerPhoto {
+  src: string;
+  width: number;
+  height: number;
+}
+
 export interface Speaker {
   id: string;
+  photo: SpeakerPhoto;
   name: string;
   affiliation: string;
   sessionLabel: string;

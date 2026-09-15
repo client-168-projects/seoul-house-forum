@@ -1,5 +1,9 @@
 /** temp/오시는길.png 기준 교통편 안내 데이터. 경로는 ">" 화살표로 이어 붙여 렌더링한다. */
 
+/** 행사장(한국프레스센터 20층 국제회의장) 구글 지도 임베드 */
+export const MAP_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x357ca2ed73c2c1a5%3A0x8c2811ce2a42e30!2z7ZWc6rWt7ZSE66CI7Iqk7IS87YSwIOq1reygnO2ajOydmOyepQ!5e0!3m2!1sko!2skr!4v1789446395686!5m2!1sko!2skr";
+
 export interface RouteRow {
   label: string;
   /** 화살표로 연결되는 경로 구간 */

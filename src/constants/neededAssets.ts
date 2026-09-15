@@ -6,27 +6,6 @@ import type { NeededAsset } from "@/types/asset";
  */
 export const NEEDED_ASSETS: NeededAsset[] = [
   {
-    id: "event-poster",
-    name: "행사 포스터 이미지",
-    description: "포럼 공식 포스터 썸네일",
-    usedIn: "행사 개요 (/forum/overview)",
-    spec: "PNG/JPG, 세로형(A4 비율), 2x 해상도",
-  },
-  {
-    id: "speaker-photo",
-    name: "연사 프로필 사진",
-    description: "이창무, 김준형, 이상영, 조강태 등 연사별 증명사진",
-    usedIn: "프로그램 (/program), 연사 소개 (/program/speakers)",
-    spec: "정방형 1:1, 최소 480x480px, JPG",
-  },
-  {
-    id: "static-map",
-    name: "오시는 길 지도",
-    description: "행사장 위치 지도 (카카오맵/네이버지도 연동 또는 정적 지도 이미지)",
-    usedIn: "오시는 길 (/forum/location)",
-    spec: "지도 API 연동 권장, 대체 시 16:9 정적 이미지",
-  },
-  {
     id: "program-brochure",
     name: "포럼 자료집 PDF",
     description: "'2026 서울주거포럼 자료집 다운로드' 버튼이 연결할 실제 파일",

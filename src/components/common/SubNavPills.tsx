@@ -9,7 +9,6 @@ interface SubNavPillsProps {
   items: NavLink[];
 }
 
-/** 목업 기준: 높이 40px, 좌우 여백 22px, 16px 텍스트, 간격 8px */
 export function SubNavPills({ items }: SubNavPillsProps) {
   const pathname = usePathname();
 
@@ -23,7 +22,7 @@ export function SubNavPills({ items }: SubNavPillsProps) {
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "inline-flex h-10 items-center rounded-full px-5 text-body font-bold transition-colors",
+              "inline-flex h-10 items-center rounded-full px-[18px] text-body font-extrabold transition-colors",
               active ? "bg-white text-ink" : "bg-primary-400 text-white hover:bg-primary-500",
             )}
           >

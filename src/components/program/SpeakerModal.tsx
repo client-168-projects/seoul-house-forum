@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
 import type { Speaker } from "@/types/program";
-import { AssetPlaceholder } from "@/components/common/AssetPlaceholder";
 
 interface SpeakerModalProps {
   speaker: Speaker;
@@ -11,8 +11,9 @@ interface SpeakerModalProps {
 
 /**
  * 목업(temp/연사소개-모달.png) 기준 1920px 프레임 수치
- * - 패널 996x634, 좌우 여백 40px, 사진 442x435 + 간격 36px + 본문 437px
- * - 소제목 18px primary-800, 본문 15px/21px
+ * - 패널 996x634, 좌우 여백 40px, 사진 정사각 + 간격 36px + 본문 437px
+ * - 타이포는 피그마 기준: 이름/소제목 Body1_extra bold(20px/800),
+ *   소속 Body2_medium(16px/600), 본문 Small_medium(14px/500)
  */
 export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
   useEffect(() => {
@@ -53,33 +54,38 @@ export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
 
         <div className="grid gap-8 lg:grid-cols-[442px_437px] lg:gap-[36px]">
           <div>
-            <AssetPlaceholder
-              assetId="speaker-photo"
-              aspectClassName="aspect-[442/435] w-full"
-              className="bg-surface-muted"
-            />
-            <p className="mt-[23px] text-body font-bold text-ink underline underline-offset-[6px]">
+            <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-surface-muted">
+              <Image
+                src={speaker.photo.src}
+                alt=""
+                width={speaker.photo.width}
+                height={speaker.photo.height}
+                sizes="442px"
+                className="absolute bottom-0 left-1/2 h-[92.5%] w-auto max-w-full -translate-x-1/2"
+              />
+            </div>
+            <p className="mt-[18px] text-body-lg font-extrabold text-ink underline decoration-2 underline-offset-[6px]">
               {speaker.name}
             </p>
-            <p className="mt-[14px] text-caption text-ink-soft">
+            <p className="mt-[12px] text-body font-semibold text-ink">
               {speaker.affiliation}
             </p>
           </div>
 
-          <div className="space-y-[37px]">
+          <div className="space-y-[24px]">
             <section>
-              <h3 className="font-heading text-body font-bold text-primary-800">
+              <h3 className="text-body-lg font-extrabold text-primary-800">
                 약력
               </h3>
-              <p className="mt-[21px] text-caption text-ink-soft">
+              <p className="mt-[9px] text-caption font-medium text-ink-soft">
                 {speaker.bio}
               </p>
             </section>
             <section>
-              <h3 className="font-heading text-body font-bold text-primary-800">
+              <h3 className="text-body-lg font-extrabold text-primary-800">
                 {speaker.sessionLabel}에 대한 초록
               </h3>
-              <p className="mt-[21px] text-caption text-ink-soft">
+              <p className="mt-[9px] text-caption font-medium text-ink-soft">
                 {speaker.abstract}
               </p>
             </section>

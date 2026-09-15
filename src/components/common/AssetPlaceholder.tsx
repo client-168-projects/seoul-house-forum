@@ -9,11 +9,6 @@ interface AssetPlaceholderProps {
   tone?: "light" | "dark";
 }
 
-/**
- * 실제 에셋이 없는 자리에 대신 넣는 사각형 placeholder.
- * assetId로 NEEDED_ASSETS 항목을 찾아 라벨을 표시하므로,
- * 필요한 에셋 목록과 항상 같은 이름으로 동기화된다.
- */
 export function AssetPlaceholder({
   assetId,
   className,

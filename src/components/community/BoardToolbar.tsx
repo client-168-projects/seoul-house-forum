@@ -10,7 +10,7 @@ interface BoardToolbarProps {
 export function BoardToolbar({ total, page }: BoardToolbarProps) {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-body text-ink-muted">
+      <p className="text-body-lg text-ink-muted">
         Total {total}건 {page}페이지
       </p>
 
@@ -22,7 +22,7 @@ export function BoardToolbar({ total, page }: BoardToolbarProps) {
           <select
             id="board-search-field"
             defaultValue="title"
-            className="h-[48px] w-full appearance-none rounded-full border border-line-soft bg-white pr-12 pl-6 text-body text-ink-soft sm:w-[197px] lg:h-[56px]"
+            className="h-[48px] w-full appearance-none rounded-full border border-line-soft bg-white pr-12 pl-6 text-body-lg text-ink-soft sm:w-[197px] lg:h-[56px]"
           >
             <option value="title">제목</option>
             <option value="content">내용</option>
@@ -37,12 +37,12 @@ export function BoardToolbar({ total, page }: BoardToolbarProps) {
           id="board-search-keyword"
           type="search"
           placeholder="검색어를 입력해 주세요"
-          className="h-[48px] w-full rounded-full border border-line-soft px-6 text-body text-ink placeholder:text-ink-muted sm:w-[303px] lg:ml-[34px] lg:h-[56px]"
+          className="h-[48px] w-full rounded-full border border-line-soft px-6 text-body-lg text-ink placeholder:text-ink-muted sm:w-[303px] lg:ml-[34px] lg:h-[56px]"
         />
 
         <button
           type="submit"
-          className="h-[48px] shrink-0 rounded-full bg-primary-600 px-8 text-body font-bold text-white hover:bg-primary-700 lg:ml-[16px] lg:h-[56px] lg:w-[97px] lg:px-0"
+          className="h-[48px] shrink-0 rounded-full bg-primary-600 px-8 text-body-lg font-bold text-white hover:bg-primary-700 lg:ml-[16px] lg:h-[56px] lg:w-[97px] lg:px-0"
         >
           검색
         </button>

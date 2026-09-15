@@ -21,11 +21,11 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
             </Link>
           </li>
           {items.map((item, index) => (
-            <li key={item} className="flex items-center gap-[10px]">
+            <li key={`${item}-${index}`} className="flex items-center gap-[10px]">
               <ChevronIcon />
               <span
                 className={cn(
-                  index === items.length - 1 && "font-bold text-[#434343]",
+                  index === items.length - 1 && "text-body font-bold text-[#434343]",
                 )}
               >
                 {item}

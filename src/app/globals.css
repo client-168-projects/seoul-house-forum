@@ -86,28 +86,38 @@
   --font-heading: var(--font-gmarket);
 
   /*
-   * 타이포 스케일 (Figma 기준)
-   * 홈 히어로: 타이틀 64px / 일시 44px / 장소 16px
-   * 서브 페이지: section-title 30px / subtitle 22px / body 16px / caption 13px
+   * 타이포 스케일 - temp/ 목업을 1920px 프레임으로 정규화해 실측한 값이다.
+   * 괄호 안은 피그마 토큰명. 홈 히어로 타이틀/일시는 자체 인라인 스케일을 쓰므로
+   * 이 토큰을 사용하지 않는다(page.tsx).
    */
-  --text-page-title: clamp(32px, 1.5rem + 2.5vw, 64px);
+  --text-page-title: clamp(36px, 1.5rem + 2.5vw, 64px); /* 서브 히어로 h1 */
   --text-page-title--line-height: 1.2;
   --text-page-title--font-weight: 700;
   --text-page-title--letter-spacing: -0.03em;
 
-  --text-section-title: clamp(20px, 0.875rem + 1.25vw, 30px);
+  --text-section-title: clamp(28px, 1.5rem + 1.5vw, 44px); /* 피그마 SHF/H1 */
   --text-section-title--line-height: 1.3;
-  --text-section-title--font-weight: 700;
+  --text-section-title--font-weight: 800;
 
-  --text-subtitle: clamp(24px, 1.25rem + 1.5vw, 44px);
-  --text-subtitle--line-height: 1.04;
+  --text-subtitle: clamp(22px, 1.25rem + 0.75vw, 30px); /* 피그마 SHF/H3 */
+  --text-subtitle--line-height: 1.3;
   --text-subtitle--font-weight: 800;
 
-  --text-body: clamp(14px, 0.8rem + 0.25vw, 16px);
-  --text-body--line-height: 1.5;
-  --text-body--font-weight: 800;
+  --text-card-title: clamp(20px, 1.125rem + 0.625vw, 26px); /* 피그마 SHF/H2 */
+  --text-card-title--line-height: 1.3;
+  --text-card-title--font-weight: 800;
 
-  --text-caption: clamp(12px, 0.7125rem + 0.125vw, 13px);
+  --text-h4: clamp(18px, 1rem + 0.5vw, 22px); /* 피그마 SHF/H4 - 연사 카드 제목, 오시는길 장소명 */
+  --text-h4--line-height: 1.5;
+  --text-h4--font-weight: 800;
+
+  --text-body-lg: clamp(16px, 0.9rem + 0.35vw, 20px); /* 피그마 SHF/Body1 */
+  --text-body-lg--line-height: 1.5;
+
+  --text-body: clamp(14px, 0.8rem + 0.25vw, 16px); /* 피그마 SHF/Body2 */
+  --text-body--line-height: 1.5;
+
+  --text-caption: clamp(12px, 0.75rem + 0.15vw, 14px); /* 피그마 SHF/Small */
   --text-caption--line-height: 1.5;
 }
 

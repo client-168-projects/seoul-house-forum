@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
@@ -19,7 +20,10 @@ const INTRO_LINES = [
 
 /**
  * 목업(temp/참가등록.png) 기준 1920px 프레임 수치
- * - 제목 40px / 부제 27px(primary-800) / 본문 22px·행간 33px
+ * 타이포는 피그마 기준
+ * - 제목 H1(44/800) / 부제 H3(30/800, Purple/Deep) / 본문 H4(22/800)
+ * - 카드 제목 H2(26/800) / 일시·장소 Body1(20/800) / 버튼 H4(22/800, 흰색)
+ * - 문의 정보 Body2_bold(16/800), 괄호 줄 Body2_medium(16/600)
  * - 등록 카드 603x535, bg primary-50, 버튼 343x62 알약형
  */
 export default function RegisterPage() {
@@ -28,88 +32,46 @@ export default function RegisterPage() {
       <PageHero title="참가 등록" />
       <Breadcrumb items={["참가 등록", "사전 등록"]} />
       <Container className="pt-14 pb-24 text-center lg:pt-[72px] lg:pb-[240px]">
-        <h2 className="font-heading text-section-title text-ink">
+        <h2 className="text-section-title text-ink">
           {EVENT_INFO.name} 참가 등록
         </h2>
-        <p className="mt-5 font-heading text-subtitle text-primary-800 lg:mt-[30px]">
+        <p className="mt-5 text-subtitle text-primary-800 lg:mt-[30px]">
           함께 논의하고, 함께 답을 찾습니다
         </p>
-        <div className="mt-8 text-body font-bold text-ink lg:mt-[45px]">
-          {INTRO_LINES.map((line) => (
-            <p key={line}>{line}</p>
+        <div className="mt-8 text-h4 text-ink lg:mt-[45px]">
+          {INTRO_LINES.map((line, index) => (
+            <p key={`${line}-${index}`}>{line}</p>
           ))}
         </div>
 
         <div className="mx-auto mt-14 flex w-full max-w-[603px] flex-col items-center bg-primary-50 px-6 py-10 lg:mt-[80px] lg:h-[535px] lg:px-0 lg:py-[45px]">
-          <RegisterIcon />
-          <p className="mt-8 font-heading text-subtitle text-ink lg:mt-[48px]">
+          <Image
+            src="/images/icons/register-icon.svg"
+            alt=""
+            width={168}
+            height={168}
+            className="h-[120px] w-[120px] lg:h-[168px] lg:w-[168px]"
+          />
+          <p className="mt-8 text-card-title text-ink lg:mt-[48px]">
             {EVENT_INFO.name}
           </p>
-          <div className="mt-4 text-body text-ink lg:mt-[27px]">
+          <div className="mt-4 text-body-lg font-extrabold text-ink lg:mt-[27px]">
             <p>{EVENT_INFO.dateLabel}</p>
             <p>{EVENT_INFO.time}</p>
             <p>{EVENT_INFO.venue}</p>
           </div>
-          <Button variant="primary" href="#" className="mt-8 w-full max-w-[343px] lg:mt-[41px]">
+          <Button variant="pill" href="#" className="mt-8 w-full max-w-[343px] text-h4 lg:mt-[41px]">
             사전 참가 등록하기
           </Button>
         </div>
 
-        <p className="mt-7 text-body text-ink lg:mt-[29px]">
-          문의 정보
-          <br />
-          (전화 {EVENT_INFO.inquiryPhone} / 메일 {EVENT_INFO.inquiryEmail})
-        </p>
+        <div className="mt-7 text-ink lg:mt-[29px]">
+          <p className="text-body font-extrabold">문의 정보</p>
+          <p className="text-body font-semibold">
+            (전화 {EVENT_INFO.inquiryPhone} / 메일 {EVENT_INFO.inquiryEmail})
+          </p>
+        </div>
       </Container>
     </>
-  );
-}
-
-/** 목업의 신청 일러스트를 단순화한 라인 아이콘 (144x161) */
-function RegisterIcon() {
-  return (
-    <svg
-      width="144"
-      height="161"
-      viewBox="0 0 144 161"
-      fill="none"
-      aria-hidden="true"
-      className="h-[120px] w-[108px] lg:h-[161px] lg:w-[144px]"
-    >
-      <rect
-        x="12"
-        y="16"
-        width="88"
-        height="66"
-        rx="3"
-        stroke="var(--color-primary-700)"
-        strokeWidth="6"
-      />
-      <path d="M40 108h32" stroke="var(--color-primary-700)" strokeWidth="6" strokeLinecap="round" />
-      <path d="M56 82v26" stroke="var(--color-primary-700)" strokeWidth="6" />
-      <rect
-        x="62"
-        y="46"
-        width="70"
-        height="99"
-        rx="3"
-        fill="white"
-        stroke="var(--color-primary-700)"
-        strokeWidth="6"
-      />
-      <circle cx="84" cy="74" r="8" stroke="var(--color-primary-700)" strokeWidth="6" />
-      <path
-        d="M74 92c0-5.5 4.5-10 10-10s10 4.5 10 10"
-        stroke="var(--color-primary-700)"
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M104 70h18M104 86h18M76 112h46M76 128h32"
-        stroke="var(--color-primary-700)"
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-    </svg>
   );
 }
