@@ -5,7 +5,8 @@ import { INTRO_CONTENT } from "@/data/intro";
 
 export const metadata: Metadata = {
   title: "2026 서울주거포럼 소개",
-  description: "2026 서울주거포럼을 소개합니다.",
+  description:
+    "2026 서울주거포럼은 서울특별시가 시민의 안정된 삶의 터전을 위해 마련한 시민 참여형 주거정책 소통의 장입니다.",
 };
 
 export default function ForumIntroPage() {
@@ -19,9 +20,15 @@ export default function ForumIntroPage() {
         <p className="mt-5 text-subtitle text-primary-800 lg:mt-[30px]">
           {INTRO_CONTENT.subheading}
         </p>
-        <div className="mt-8 text-body-lg font-bold text-ink lg:mt-[43px]">
-          {INTRO_CONTENT.lines.map((line, index) => (
-            <p key={`${line}-${index}`}>{line}</p>
+        <div className="mx-auto mt-8 max-w-205 space-y-6 text-body-lg font-bold break-keep text-ink lg:mt-[43px]">
+          {INTRO_CONTENT.paragraphs.map((lines, paragraphIndex) => (
+            <p key={paragraphIndex}>
+              {lines.map((line, lineIndex) => (
+                <span key={lineIndex} className="sm:block">
+                  {line}{" "}
+                </span>
+              ))}
+            </p>
           ))}
         </div>
       </Container>

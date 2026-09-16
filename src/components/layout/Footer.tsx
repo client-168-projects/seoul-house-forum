@@ -35,16 +35,36 @@ export function Footer() {
           </dl>
         </div>
 
-        <div className="flex items-start gap-[14px] lg:justify-center">
-          <span className="pt-1 text-caption text-ink-soft">주최</span>
-          <Image
-            src="/images/hero/logos/seoul-city-logo.svg"
-            alt={EVENT_INFO.host}
-            width={185}
-            height={48}
-            className="h-auto w-[185px]"
-          />
-        </div>
+        <dl className="space-y-4 text-caption lg:justify-self-center">
+          <div className="flex items-start gap-[14px]">
+            <dt className="w-7 shrink-0 pt-1 text-ink-soft">주최</dt>
+            <dd>
+              <Image
+                src="/images/hero/logos/seoul-city-logo.svg"
+                alt={EVENT_INFO.host}
+                width={185}
+                height={48}
+                className="h-auto w-[185px]"
+              />
+            </dd>
+          </div>
+          <div className="flex items-start gap-[14px]">
+            <dt className="w-7 shrink-0 pt-1 text-ink-soft">주관</dt>
+            <dd className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              {EVENT_INFO.organizers.map((organizer) => (
+                <Image
+                  key={organizer.name}
+                  src={organizer.logo.src}
+                  alt={organizer.name}
+                  width={organizer.logo.width}
+                  height={organizer.logo.height}
+                  className="w-auto"
+                  style={{ height: organizer.logo.displayHeight }}
+                />
+              ))}
+            </dd>
+          </div>
+        </dl>
       </Container>
 
       <div className="h-px w-full bg-footer-line" />

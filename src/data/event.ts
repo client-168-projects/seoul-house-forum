@@ -13,6 +13,21 @@ export const EVENT_INFO = {
   venue: "한국프레스센터 20층 국제회의장",
   address: "서울특별시 중구 세종대로 124",
   host: "서울특별시",
+  /** displayHeight: 로고마다 글자 비중이 달라 시각적으로 같은 크기로 보이도록 맞춘 표시 높이(px) */
+  organizers: [
+    {
+      name: "한국도시부동산학회",
+      logo: { src: "/images/logos/organizers/korea-urban-and-real-estate-association-logo.svg", width: 228, height: 39, displayHeight: 32 },
+    },
+    {
+      name: "한국부동산분석학회",
+      logo: { src: "/images/logos/organizers/korea-real-estate-analysis-association-logo.png", width: 322, height: 65, displayHeight: 42 },
+    },
+    {
+      name: "서울연구원",
+      logo: { src: "/images/logos/organizers/the-seoul-institute-logo.svg", width: 203, height: 51, displayHeight: 40 },
+    },
+  ],
   inquiryPhone: "00",
   inquiryEmail: "00",
 } as const;

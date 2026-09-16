@@ -1,22 +1,34 @@
 export interface Presenter {
   name: string;
-  affiliation?: string;
+  affiliation: string;
+  /** 발표 분류 (공공임대, 민간임대 등) */
+  category?: string;
 }
 
-export interface AgendaEntry {
+export type AgendaContent =
+  | { kind: "text"; lines: string[] }
+  | { kind: "session"; badge: string; title: string; presenter: Presenter }
+  | {
+      kind: "panel";
+      moderatorRole: string;
+      moderator: string;
+      discussionLabel: string;
+      discussionSummary: string;
+      panelists: Presenter[];
+    };
+
+export interface AgendaSlot {
+  timeRange: string;
+  duration?: string;
+  /** 여러 슬롯을 묶은 행에서만 쓰는 세부 구분명 */
+  subLabel?: string;
+  content: AgendaContent;
+}
+
+export interface AgendaRow {
   label: string;
-  /** 발표 제목 (있는 행만 큰 보라색 타이틀로 노출된다) */
-  title?: string;
-  presenters?: Presenter[];
-  /** 발표자 대신 설명 한 줄만 들어가는 행 */
-  note?: string;
-}
-
-/** 같은 시간대를 공유하는 세션 묶음. 목업에서 시간은 그룹당 한 번만 표기된다. */
-export interface AgendaGroup {
-  start: string;
-  end: string;
-  entries: AgendaEntry[];
+  highlighted: boolean;
+  slots: AgendaSlot[];
 }
 
 /** 배경이 제거된 인물 컷아웃. 카드/모달에서 하단 정렬로 배치한다. */

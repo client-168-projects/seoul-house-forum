@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
+import { AgendaTable } from "@/components/program/AgendaTable";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { Button } from "@/components/ui/Button";
-import { AGENDA_GROUPS } from "@/data/program";
+import { AGENDA_ROWS } from "@/data/program";
 import { EVENT_INFO } from "@/data/event";
-import { cn } from "@/utils/cn";
 
 export const metadata: Metadata = {
   title: "프로그램",
   description: "2026 서울주거포럼 프로그램 순서 안내",
 };
 
-/**
- * 목업(temp/프로그램.png) 기준 1920px 프레임 수치
- * - 날짜 41px, 자료집 버튼 42px 높이(컨테이너 우측 끝 정렬)
- * - 표 컬럼: 시간 144px / 구분 196px / 내용 나머지
- * - 그룹 구분선 1px #8c8c8c, 그룹 내 세션 구분선 1px #e5e5e5(구분 컬럼부터 시작)
- */
 export default function ProgramPage() {
   return (
     <>
@@ -33,68 +27,7 @@ export default function ProgramPage() {
           </Button>
         </div>
 
-        <ol className="mt-10 lg:mt-[38px]">
-          {AGENDA_GROUPS.map((group, groupIndex) => (
-            <li
-              key={`${group.start}-${groupIndex}`}
-              className="grid grid-cols-1 border-t border-line py-2 lg:grid-cols-[144px_1fr] lg:py-4"
-            >
-              <p className="pt-5 text-caption text-ink-muted lg:py-[26px]">
-                <span className="block">{group.start}</span>
-                <span className="block">{group.end}</span>
-              </p>
-
-              <div>
-                {group.entries.map((entry, index) => (
-                  <div
-                    key={`${entry.label}-${index}`}
-                    className={cn(
-                      "grid grid-cols-1 gap-y-2 pt-5 lg:grid-cols-[196px_1fr] lg:gap-y-0 lg:pt-[26px]",
-                      entry.title ? "pb-8 lg:pb-[51px]" : "pb-5 lg:pb-[26px]",
-                      index > 0 && "border-t border-line-soft",
-                    )}
-                  >
-                    <p className="text-body-lg font-bold text-primary-800">
-                      {entry.label}
-                    </p>
-
-                    <div>
-                      {entry.title && (
-                        <p className="text-subtitle text-primary-800">
-                          {entry.title}
-                        </p>
-                      )}
-
-                      {entry.presenters && (
-                        <ul className={cn("space-y-4 lg:space-y-[32px]", entry.title && "mt-3 lg:mt-[18px]")}>
-                          {entry.presenters.map((presenter, presenterIndex) => (
-                            <li
-                              key={`${presenter.name}-${presenterIndex}`}
-                              className="text-body-lg"
-                            >
-                              <span className="font-bold text-ink">{presenter.name}</span>
-                              {presenter.affiliation && (
-                                <span className="ml-[10px] text-ink-soft">
-                                  {presenter.affiliation}
-                                </span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-
-                      {entry.note && (
-                        <p className="text-body-lg text-ink-soft">
-                          {entry.note}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </li>
-          ))}
-        </ol>
+        <AgendaTable rows={AGENDA_ROWS} />
       </Container>
     </>
   );
