@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: "2026 서울주거포럼",
     template: "%s | 2026 서울주거포럼",
   },
-  description: "전월세 시장 현황 및 시장 안정화 방안을 논의하는 2026 서울주거포럼",
+  description: "전월세시장 현황을 진단하고 안정화 방안을 모색하는 2026 서울주거포럼",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

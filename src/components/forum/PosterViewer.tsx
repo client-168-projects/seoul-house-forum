@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 const POSTER = {
   src: "/images/forum/poster.webp",
-  width: 1000,
-  height: 1414,
+  width: 1400,
+  height: 1980,
 };
 
 interface PosterViewerProps {

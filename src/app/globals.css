@@ -44,6 +44,8 @@
 
   /* 일러스트 계열. 현재 UI에는 쓰이지 않고 팔레트 정의용으로만 둔다. */
   --color-pink: #f0a8e8;
+  /* 피그마 Pink/Light. 오시는 길 두 번째 버스 정류장 배지 */
+  --color-pink-light: #a14879;
 
   --background: var(--color-surface);
   --foreground: var(--color-ink);
@@ -81,6 +83,7 @@
   --color-footer-bg: var(--color-footer-bg);
   --color-footer-line: var(--color-footer-line);
   --color-pink: var(--color-pink);
+  --color-pink-light: var(--color-pink-light);
 
   --font-sans: var(--font-suit);
   --font-heading: var(--font-gmarket);

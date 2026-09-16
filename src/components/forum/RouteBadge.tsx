@@ -11,8 +11,8 @@ export function RouteBadge({ children, tone = "accent", className }: RouteBadgeP
   return (
     <span
       className={cn(
-        "inline-flex h-[28px] shrink-0 items-center rounded-full px-[14px] text-body font-extrabold text-ink",
-        tone === "accent" ? "bg-accent" : "bg-[#edbed8]",
+        "inline-flex h-[28px] shrink-0 items-center rounded-full px-[14px] text-body font-extrabold",
+        tone === "accent" ? "bg-accent text-ink" : "bg-pink-light text-white",
         className,
       )}
     >

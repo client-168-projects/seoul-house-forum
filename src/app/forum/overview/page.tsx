@@ -19,7 +19,7 @@ interface OverviewRow {
 
 const ROWS: OverviewRow[] = [
   { tag: "행사", value: EVENT_INFO.name },
-  { tag: "주제", value: `${EVENT_INFO.theme}${EVENT_INFO.themeNote}` },
+  { tag: "주제", value: EVENT_INFO.theme },
   { tag: "일시", value: `${EVENT_INFO.dateLong} ${EVENT_INFO.timeRange}` },
   { tag: "장소", value: EVENT_INFO.venue },
   {
