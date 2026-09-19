@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { gmarketSans, suit } from "@/styles/fonts";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,11 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className={`${gmarketSans.variable} ${suit.variable} h-full antialiased`}>
-      <body className="relative flex min-h-full flex-col">
-        <Header />
-        <main className="flex flex-1 flex-col">{children}</main>
-        <Footer />
-      </body>
+      <body className="relative flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

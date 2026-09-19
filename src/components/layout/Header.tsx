@@ -30,15 +30,17 @@ export function Header() {
       className={cn(
         "absolute inset-x-0 top-0 z-50",
         expanded ? "bg-white shadow-[0_12px_24px_rgba(24,24,24,0.08)]" : "bg-transparent",
+        // 모바일 메뉴를 열면 상단 바와 메뉴 패널이 한 덩어리로 보이도록 같은 배경을 깐다.
+        mobileOpen && "max-lg:bg-primary-900 max-lg:shadow-[0_16px_32px_rgba(24,24,24,0.25)]",
       )}
       onMouseLeave={() => setHoveredIndex(null)}
     >
-      <Container padded={false} className="relative px-12 min-[1296px]:px-0">
-        <div className="grid grid-cols-[1fr_auto] lg:grid-cols-[250px_repeat(4,minmax(0,1fr))]">
+      <Container className="relative">
+        <div className="grid min-h-[68px] grid-cols-[1fr_auto] items-center lg:min-h-0 lg:grid-cols-[250px_repeat(4,minmax(0,1fr))] lg:items-stretch">
           <Link
             href="/"
             onClick={() => setMobileOpen(false)}
-            className="self-start pt-[22px] lg:pt-[31px]"
+            className="self-center py-3 lg:self-start lg:py-0 lg:pt-[31px]"
           >
             <Image
               src={expanded ? PURPLE_LOGO : WHITE_LOGO}
@@ -112,8 +114,8 @@ export function Header() {
           <button
             type="button"
             className={cn(
-              "mt-3 inline-flex h-11 w-11 items-center justify-center justify-self-end lg:hidden",
-              expanded || mobileOpen ? "text-primary-950" : "text-white",
+              "-mr-2 inline-flex h-11 w-11 items-center justify-center justify-self-end lg:hidden",
+              expanded ? "text-primary-950" : "text-white",
             )}
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}

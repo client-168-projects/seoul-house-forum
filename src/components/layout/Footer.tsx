@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties, ReactNode } from "react";
 import { EVENT_INFO } from "@/data/event";
 import { Container } from "@/components/common/Container";
 
@@ -36,31 +37,35 @@ export function Footer() {
         </div>
 
         <dl className="space-y-4 text-caption lg:justify-self-center">
-          <div className="flex items-start gap-[14px]">
-            <dt className="w-7 shrink-0 pt-1 text-ink-soft">주최</dt>
+          <div className="flex items-center gap-[14px] lg:items-start">
+            <dt className="w-7 shrink-0 text-ink-soft lg:pt-1">주최</dt>
             <dd>
-              <Image
-                src="/images/hero/logos/seoul-city-logo.svg"
-                alt={EVENT_INFO.host}
-                width={185}
-                height={48}
-                className="h-auto w-[185px]"
-              />
+              <LogoLink href={EVENT_INFO.hostUrl} name={EVENT_INFO.host}>
+                <Image
+                  src="/images/hero/logos/seoul-city-logo.svg"
+                  alt={EVENT_INFO.host}
+                  width={185}
+                  height={48}
+                  className="h-auto w-[132px] lg:w-[185px]"
+                />
+              </LogoLink>
             </dd>
           </div>
           <div className="flex items-start gap-[14px]">
-            <dt className="w-7 shrink-0 pt-1 text-ink-soft">주관</dt>
-            <dd className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <dt className="w-7 shrink-0 pt-3 text-ink-soft lg:pt-1">주관</dt>
+            <dd className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:gap-x-6 lg:gap-y-3">
               {EVENT_INFO.organizers.map((organizer) => (
-                <Image
-                  key={organizer.name}
-                  src={organizer.logo.src}
-                  alt={organizer.name}
-                  width={organizer.logo.width}
-                  height={organizer.logo.height}
-                  className="w-auto"
-                  style={{ height: organizer.logo.displayHeight }}
-                />
+                <LogoLink key={organizer.name} href={organizer.url} name={organizer.name}>
+                  {/* 모바일은 PC 표시 높이의 70%로 줄인다. */}
+                  <Image
+                    src={organizer.logo.src}
+                    alt={organizer.name}
+                    width={organizer.logo.width}
+                    height={organizer.logo.height}
+                    className="h-[calc(var(--logo-height)*0.7)] w-auto lg:h-(--logo-height)"
+                    style={{ "--logo-height": `${organizer.logo.displayHeight}px` } as CSSProperties}
+                  />
+                </LogoLink>
               ))}
             </dd>
           </div>
@@ -75,5 +80,20 @@ export function Footer() {
         </p>
       </Container>
     </footer>
+  );
+}
+
+/** 주최/주관 기관 로고. 외부 사이트라 새 창으로 열고, 터치 영역은 최소 40px 높이를 확보한다. */
+function LogoLink({ href, name, children }: { href: string; name: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${name} 홈페이지 (새 창)`}
+      className="inline-flex min-h-10 items-center rounded-[6px] transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600"
+    >
+      {children}
+    </a>
   );
 }
