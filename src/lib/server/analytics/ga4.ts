@@ -2,6 +2,7 @@ import "server-only";
 import { getEnv } from "@/lib/server/cloudflare";
 import { base64ToBytes, bytesToBase64Url } from "@/lib/server/crypto";
 import { rangeDates } from "@/lib/server/analytics/range";
+import { readCachedReport, writeCachedReport } from "@/lib/server/analytics/cache";
 import { buildSampleReport } from "@/lib/server/analytics/sample";
 import type {
   AnalyticsRangeKey,
@@ -194,6 +195,12 @@ export async function getAnalyticsReport(key: AnalyticsRangeKey): Promise<Analyt
   const privateKey = env.GA4_PRIVATE_KEY?.trim();
 
   if (!propertyId || !clientEmail || !privateKey) return buildSampleReport(key);
-  return fetchLiveReport(key, { propertyId, clientEmail, privateKey });
+
+  const cached = await readCachedReport(propertyId, key);
+  if (cached) return cached;
+
+  const report = await fetchLiveReport(key, { propertyId, clientEmail, privateKey });
+  await writeCachedReport(propertyId, key, report);
+  return report;
 }
 

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { BoardStatusBadge } from "@/components/admin/BoardStatusBadge";
+import { RejectReasonDialog } from "@/components/admin/RejectReasonDialog";
 import { adminFetch } from "@/lib/client/adminApi";
 import type { AdminBoardPost, BoardPostStatus } from "@/types/board";
 import { cn } from "@/utils/cn";
@@ -13,7 +14,7 @@ interface BoardReviewTableProps {
   total: number;
 }
 
-type Action = { kind: "status"; status: BoardPostStatus } | { kind: "delete" };
+type Action = { kind: "status"; status: BoardPostStatus; note?: string } | { kind: "delete" };
 
 export function BoardReviewTable({ posts, total }: BoardReviewTableProps) {
   const router = useRouter();
@@ -21,6 +22,8 @@ export function BoardReviewTable({ posts, total }: BoardReviewTableProps) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [, startTransition] = useTransition();
+  // 반려는 사유 입력 창을 거치므로 대상 id를 잠시 들고 있는다.
+  const [rejectTargets, setRejectTargets] = useState<number[] | null>(null);
 
   const allSelected = posts.length > 0 && selected.size === posts.length;
 
@@ -42,9 +45,12 @@ export function BoardReviewTable({ posts, total }: BoardReviewTableProps) {
     try {
       await adminFetch("/api/admin/board", {
         method: action.kind === "delete" ? "DELETE" : "PATCH",
-        body: JSON.stringify(action.kind === "delete" ? { ids } : { ids, status: action.status }),
+        body: JSON.stringify(
+          action.kind === "delete" ? { ids } : { ids, status: action.status, note: action.note },
+        ),
       });
       setSelected(new Set());
+      setRejectTargets(null);
       startTransition(() => router.refresh());
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "처리하지 못했습니다.");
@@ -71,7 +77,7 @@ export function BoardReviewTable({ posts, total }: BoardReviewTableProps) {
             <BulkButton onClick={() => run(selectedIds, { kind: "status", status: "approved" })} disabled={busy} tone="accent">
               선택 승인
             </BulkButton>
-            <BulkButton onClick={() => run(selectedIds, { kind: "status", status: "rejected" })} disabled={busy} tone="ghost">
+            <BulkButton onClick={() => setRejectTargets(selectedIds)} disabled={busy} tone="ghost">
               선택 반려
             </BulkButton>
             <BulkButton onClick={() => run(selectedIds, { kind: "delete" })} disabled={busy} tone="danger">
@@ -86,6 +92,14 @@ export function BoardReviewTable({ posts, total }: BoardReviewTableProps) {
           {error}
         </p>
       )}
+
+      <RejectReasonDialog
+        open={rejectTargets !== null}
+        count={rejectTargets?.length ?? 0}
+        submitting={busy}
+        onConfirm={(note) => rejectTargets && run(rejectTargets, { kind: "status", status: "rejected", note })}
+        onClose={() => setRejectTargets(null)}
+      />
 
       {posts.length === 0 ? (
         <p className="px-5 py-20 text-center text-body text-ink-muted">해당 조건의 의견이 없습니다.</p>
@@ -133,6 +147,9 @@ export function BoardReviewTable({ posts, total }: BoardReviewTableProps) {
                   <td className="py-4 text-ink-muted tabular-nums">{post.id}</td>
                   <td className="py-4 pr-6">
                     <p className="text-body leading-relaxed text-ink">{post.content}</p>
+                    {post.reviewNote && (
+                      <p className="mt-1.5 text-[12px] text-ink-muted">반려 사유: {post.reviewNote}</p>
+                    )}
                   </td>
                   <td className="py-4">
                     <p className="font-bold text-ink" title={post.authorFullName ? `공개 표시: ${post.author}` : undefined}>
@@ -161,7 +178,7 @@ export function BoardReviewTable({ posts, total }: BoardReviewTableProps) {
                         </RowButton>
                       )}
                       {post.status !== "rejected" && (
-                        <RowButton onClick={() => run([post.id], { kind: "status", status: "rejected" })} disabled={busy}>
+                        <RowButton onClick={() => setRejectTargets([post.id])} disabled={busy}>
                           반려
                         </RowButton>
                       )}

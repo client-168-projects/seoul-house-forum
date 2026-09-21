@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
+import { JsonLd } from "@/components/common/JsonLd";
 import { AttachmentList } from "@/components/community/AttachmentList";
 import { Button } from "@/components/ui/Button";
+import { buildBreadcrumbJsonLd, buildNoticeJsonLd } from "@/lib/jsonLd";
 import { parseId } from "@/lib/server/http";
 import { getNotice, getNoticeNeighbors } from "@/lib/server/repositories/notices";
 import { renderRichText } from "@/lib/server/richTextHtml";
@@ -45,6 +47,14 @@ export default async function NoticeDetailPage({ params }: PageProps<"/community
 
   return (
     <>
+      <JsonLd data={buildNoticeJsonLd(notice)} />
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: "소통의 장", path: "/community/notice" },
+          { name: "공지사항", path: "/community/notice" },
+          { name: notice.title, path: `/community/notice/${notice.id}` },
+        ])}
+      />
       <Breadcrumb items={["소통의 장", "공지사항"]} />
       <Container className="pt-12 pb-24 lg:pt-[80px] lg:pb-[240px]">
         <article>

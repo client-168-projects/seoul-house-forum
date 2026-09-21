@@ -1,9 +1,9 @@
 import "server-only";
 import type { JSONContent } from "@tiptap/react";
-import { getBucket, getDb } from "@/lib/server/cloudflare";
+import { getDb } from "@/lib/server/cloudflare";
 import { toPaginated } from "@/lib/server/pagination";
 import { LIKE_ESCAPE_CLAUSE, toLikePattern } from "@/lib/server/sql";
-import { fileUrl } from "@/lib/server/storage";
+import { deleteUploads, fileUrl } from "@/lib/server/storage";
 import type { NoticeAttachment, NoticeDetail, NoticeSummary, UploadedFile } from "@/types/notice";
 import type { Paginated } from "@/types/pagination";
 
@@ -75,6 +75,14 @@ export async function listNotices(options: {
 
   const total = (countResult.results[0] as { total: number } | undefined)?.total ?? 0;
   return toPaginated((rowsResult.results as NoticeRow[]).map(toSummary), total, page, pageSize);
+}
+
+/** 사이트맵용 최소 조회. 최신순 상위 1000건만 포함한다. */
+export async function listSitemapNotices(): Promise<{ id: number; updatedAt: string }[]> {
+  const rows = await getDb()
+    .prepare("SELECT id, updated_at FROM notices ORDER BY created_at DESC LIMIT 1000")
+    .all<{ id: number; updated_at: string }>();
+  return rows.results.map((row) => ({ id: row.id, updatedAt: row.updated_at }));
 }
 
 export async function getNotice(id: number): Promise<NoticeDetail | null> {
@@ -167,7 +175,7 @@ export async function updateNotice(id: number, data: SaveNoticeData): Promise<bo
   ]);
   if (updateResult.meta.changes === 0) return false;
 
-  if (removedKeys.length > 0) await getBucket().delete(removedKeys);
+  if (removedKeys.length > 0) await deleteUploads(removedKeys);
   return true;
 }
 
@@ -181,6 +189,6 @@ export async function deleteNotice(id: number): Promise<boolean> {
   if (result.meta.changes === 0) return false;
 
   const keys = attachments.results.map((row) => row.r2_key);
-  if (keys.length > 0) await getBucket().delete(keys);
+  if (keys.length > 0) await deleteUploads(keys);
   return true;
 }

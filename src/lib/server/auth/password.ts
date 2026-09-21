@@ -23,9 +23,25 @@ async function derive(password: string, salt: Uint8Array<ArrayBuffer>, iteration
   return bytesToBase64(new Uint8Array(bits));
 }
 
+export interface StoredPassword {
+  hash: string;
+  salt: string;
+  iterations: number;
+}
+
+/** 새 비밀번호 저장용 해시. scripts/create-admin.mjs 와 같은 파라미터를 쓴다. */
+export async function hashPassword(password: string): Promise<StoredPassword> {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  return {
+    hash: await derive(password, salt, PASSWORD_ITERATIONS),
+    salt: bytesToBase64(salt),
+    iterations: PASSWORD_ITERATIONS,
+  };
+}
+
 export async function verifyPassword(
   password: string,
-  stored: { hash: string; salt: string; iterations: number },
+  stored: StoredPassword,
 ): Promise<boolean> {
   const candidate = await derive(password, base64ToBytes(stored.salt), stored.iterations);
   return timingSafeEqual(candidate, stored.hash);

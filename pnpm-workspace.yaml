@@ -3,3 +3,15 @@ allowBuilds:
   sharp: false
   unrs-resolver: false
   workerd: true
+
+# sharp(네이티브 이미지 모듈)는 Cloudflare Workers 번들에 포함될 수 없다.
+# next는 선택적 의존성으로, wrangler/miniflare는 필수 의존성으로 sharp를 갖고 있어서
+# 설치는 막을 수 없지만, 호이스팅에서 빼 Next 빌드가 트레이스하지 못하게 한다.
+hoistPattern:
+  - "*"
+  - "!sharp"
+  - "!@img/*"
+
+# OpenNext 번들러가 Windows 심볼릭 링크를 읽지 못해(Access is denied) 빌드가 실패한다.
+# 심볼릭 링크 없이 실제 폴더로 설치하면 Windows에서도 빌드가 통과한다.
+nodeLinker: hoisted

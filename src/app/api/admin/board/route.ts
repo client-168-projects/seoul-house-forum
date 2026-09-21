@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(result);
 }
 
-/** 일괄 상태 변경: { ids: number[], status: "approved" | "rejected" | "pending" } */
+/** 일괄 상태 변경: { ids: number[], status: "approved" | "rejected" | "pending", note?: string } */
 export async function PATCH(request: NextRequest) {
   const guard = await guardAdminApi(request);
   if (guard.error) return guard.error;
@@ -35,7 +35,8 @@ export async function PATCH(request: NextRequest) {
   const status = parseBoardStatus(body?.status);
   if (!ids || !status) return jsonError("변경할 의견과 상태를 확인해 주세요.", 422);
 
-  const updated = await updatePostStatus(ids, status, guard.session.adminId);
+  const note = typeof body?.note === "string" ? body.note : null;
+  const updated = await updatePostStatus(ids, status, guard.session.adminId, note);
   return NextResponse.json({ updated });
 }
 

@@ -19,4 +19,6 @@ export interface AdminBoardPost extends OpinionPost {
   ip: string | null;
   userAgent: string | null;
   reviewedAt: string | null;
+  /** 반려 사유 등 운영자 메모 */
+  reviewNote: string | null;
 }

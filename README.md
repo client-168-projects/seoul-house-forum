@@ -29,7 +29,7 @@ pnpm dev
 1. D1/R2 생성 후 `wrangler.jsonc`의 `database_id` 교체
    ```bash
    pnpm exec wrangler d1 create seoul-house-forum-db
-   pnpm exec wrangler r2 bucket create seoul-house-forum-files
+   pnpm exec wrangler r2 bucket create seoul-house-forum-temp
    pnpm db:migrate:remote
    ADMIN_USERNAME=... ADMIN_PASSWORD=... pnpm admin:create --remote
    ```
@@ -43,7 +43,17 @@ pnpm dev
    pnpm exec wrangler secret put GA4_CLIENT_EMAIL
    pnpm exec wrangler secret put GA4_PRIVATE_KEY
    ```
-4. `NEXT_PUBLIC_SITE_URL`에 운영 도메인 지정 (sitemap/robots)
+4. `NEXT_PUBLIC_SITE_URL`에 운영 도메인 지정 (sitemap/robots). 빌드 시점에 값이 박히므로 wrangler vars가 아니라 빌드 환경(`.env.production` 또는 CI)에 넣는다.
+
+미리보기 환경(`env.preview`)은 바인딩과 시크릿을 따로 만든다.
+
+```bash
+pnpm exec wrangler d1 create seoul-house-forum-db-preview   # database_id를 wrangler.jsonc의 env.preview에 반영
+pnpm exec wrangler r2 bucket create seoul-house-forum-files-preview
+pnpm exec wrangler d1 migrations apply DB --remote --env preview
+pnpm exec wrangler secret put TURNSTILE_SECRET_KEY --env preview
+pnpm exec opennextjs-cloudflare deploy -- --env preview
+```
 
 ## 구조 요약
 
@@ -59,3 +69,17 @@ pnpm dev
 - 자유게시판 등록 방어: 동의 2종 필수, Turnstile, 허니팟, 최소 작성 시간, IP 10초 쿨다운/시간당 20건, 24시간 중복 차단, 링크/연락처/금칙어 차단, 운영자 승인 후 공개. IP/UA는 30일 뒤 자동 파기
 - 작성자 이름: 공개용 마스킹 값(김ㅇㅇ)만 평문 저장, 원문은 AES-GCM 암호화 후 관리자 화면에서만 복호화
 - 공지 본문: TipTap JSON 저장 -> 서버에서 화이트리스트 정리 후 스키마 기반 HTML 렌더링
+- 관리자 계정: `/admin/account`에서 비밀번호 변경(변경 시 다른 기기 세션 전부 해제)
+- 검수 반려 사유는 `board_posts.review_note`에 남고 관리자 목록에서만 보인다
+- 저장하지 않고 나간 업로드(R2)는 공지 목록 조회 때 1시간에 한 번 정리한다(`cleanupOrphanUploads`, 업로드 24시간 경과분 대상)
+- GA4 응답은 Workers Cache API로 기간별 10분 캐시한다
+- 사이트맵은 공지 상세까지 포함하며 요청 시점에 생성한다(`src/app/sitemap.ts`)
+
+## Windows 빌드 참고
+
+`pnpm-workspace.yaml`의 두 설정은 Windows에서 OpenNext 빌드를 통과시키기 위한 것이다.
+
+- `hoistPattern`에서 `sharp`, `@img/*` 제외: 네이티브 이미지 모듈이 Workers 번들에 들어가면 빌드가 깨진다.
+- `nodeLinker: hoisted`: OpenNext 번들러가 pnpm 심볼릭 링크를 읽지 못해(Access is denied) 실패한다.
+
+Windows에서 빌드하려면 개발자 모드(설정 > 시스템 > 개발자용)도 켜져 있어야 한다. 리눅스/WSL/CI에서는 이 제약이 없다.

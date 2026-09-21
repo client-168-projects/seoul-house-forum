@@ -27,6 +27,7 @@ interface BoardRow {
   ip: string | null;
   user_agent: string | null;
   reviewed_at: string | null;
+  review_note: string | null;
 }
 
 const minutesAgo = (minutes: number) => new Date(Date.now() - minutes * 60 * 1000).toISOString();
@@ -43,6 +44,7 @@ async function toAdmin(row: BoardRow): Promise<AdminBoardPost> {
     ip: row.ip,
     userAgent: row.user_agent,
     reviewedAt: row.reviewed_at,
+    reviewNote: row.review_note,
   };
 }
 
@@ -101,12 +103,19 @@ export async function listPostsForAdmin(
   return { ...toPaginated(items, total, page, pageSize), counts };
 }
 
-export async function updatePostStatus(ids: number[], status: BoardPostStatus, adminId: number): Promise<number> {
+export async function updatePostStatus(
+  ids: number[],
+  status: BoardPostStatus,
+  adminId: number,
+  note?: string | null,
+): Promise<number> {
   if (ids.length === 0) return 0;
   const placeholders = ids.map(() => "?").join(",");
   const result = await getDb()
-    .prepare(`UPDATE board_posts SET status = ?, reviewed_at = ?, reviewed_by = ? WHERE id IN (${placeholders})`)
-    .bind(status, new Date().toISOString(), adminId, ...ids)
+    .prepare(
+      `UPDATE board_posts SET status = ?, reviewed_at = ?, reviewed_by = ?, review_note = ? WHERE id IN (${placeholders})`,
+    )
+    .bind(status, new Date().toISOString(), adminId, note?.trim() ? note.trim().slice(0, 200) : null, ...ids)
     .run();
   return result.meta.changes;
 }

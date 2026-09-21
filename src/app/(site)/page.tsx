@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { Container } from "@/components/common/Container";
+import { JsonLd } from "@/components/common/JsonLd";
 import { Button } from "@/components/ui/Button";
 import { EVENT_INFO } from "@/data/event";
 import { HeroAssetDevPanel } from "@/components/dev/HeroAssetDevPanel";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
+import { buildEventJsonLd } from "@/lib/jsonLd";
 
 /**
  * 홈 히어로. 목업(temp/home.png) 기준 1920px 프레임 수치
@@ -16,6 +18,7 @@ import { ArrowIcon } from "@/components/ui/ArrowIcon";
 export default function HomePage() {
   return (
     <section className="relative flex grow flex-col overflow-hidden bg-hero-gradient text-white lg:h-[760px]">
+      <JsonLd data={buildEventJsonLd()} />
       <HeroAssetDevPanel />
 
       <Container className="relative flex grow flex-col">

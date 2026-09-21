@@ -7,6 +7,7 @@ import { Pagination } from "@/components/community/Pagination";
 import { verifyAdmin } from "@/lib/server/auth/dal";
 import { parsePage } from "@/lib/server/pagination";
 import { listNotices } from "@/lib/server/repositories/notices";
+import { cleanupOrphanUploads } from "@/lib/server/storage";
 import { formatDateTime } from "@/utils/date";
 import { withPageParam } from "@/utils/pagination";
 
@@ -19,6 +20,13 @@ export default async function AdminNoticesPage({ searchParams }: PageProps<"/adm
   const params = await searchParams;
   const query = typeof params.q === "string" ? params.q.trim().slice(0, 50) : "";
   const result = await listNotices({ page: parsePage(params.page), pageSize: PAGE_SIZE, query });
+
+  // 저장하지 않고 나간 업로드 정리. 실패해도 목록 조회에는 영향을 주지 않는다.
+  try {
+    await cleanupOrphanUploads();
+  } catch (error) {
+    console.error("[cleanup]", error);
+  }
 
   return (
     <div className="mx-auto max-w-[1280px]">

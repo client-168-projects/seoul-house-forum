@@ -101,20 +101,31 @@ export function AdminShell({ username, lastLoginAt, pendingCount, children }: Ad
         </nav>
 
         <div className="shrink-0 border-t border-white/10 p-4">
-          <div className="flex items-center gap-3 rounded-[14px] bg-white/5 p-3">
+          <Link
+            href="/admin/account"
+            aria-current={pathname === "/admin/account" ? "page" : undefined}
+            className={cn(
+              "flex items-center gap-3 rounded-[14px] p-3 transition-colors",
+              pathname === "/admin/account" ? "bg-white/15" : "bg-white/5 hover:bg-white/10",
+            )}
+          >
             <span
               aria-hidden="true"
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent font-heading text-body font-bold text-accent-ink"
             >
               {username.slice(0, 1).toUpperCase()}
             </span>
-            <div className="min-w-0">
-              <p className="truncate text-body font-bold">{username}</p>
-              <p className="truncate text-[12px] text-white/55">
+            <span className="min-w-0 flex-1">
+              <span className="block truncate text-body font-bold">{username}</span>
+              <span className="block truncate text-[12px] text-white/55">
                 관리자 · {lastLoginAt ? `${formatDateTime(lastLoginAt).slice(5)} 접속` : "첫 접속"}
-              </p>
-            </div>
-          </div>
+              </span>
+            </span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0 text-white/50">
+              <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="sr-only">계정 설정</span>
+          </Link>
 
           <div className="mt-3 grid grid-cols-2 gap-2">
             <Link

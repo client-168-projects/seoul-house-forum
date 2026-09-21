@@ -15,7 +15,8 @@ export function SubNavPills({ items }: SubNavPillsProps) {
   return (
     <div className="flex flex-wrap justify-center gap-2">
       {items.map((item) => {
-        const active = pathname === item.href;
+        // 상세 페이지(/community/notice/3)에서도 해당 탭이 선택 상태로 보이게 한다.
+        const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
         return (
           <Link
             key={item.href}

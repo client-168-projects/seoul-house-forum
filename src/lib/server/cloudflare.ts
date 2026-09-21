@@ -9,7 +9,3 @@ export function getEnv(): CloudflareEnv {
 export function getDb(): D1Database {
   return getEnv().DB;
 }
-
-export function getBucket(): R2Bucket {
-  return getEnv().FILES;
-}
