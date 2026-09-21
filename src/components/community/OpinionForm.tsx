@@ -212,9 +212,9 @@ export function OpinionForm({ turnstileSiteKey }: OpinionFormProps) {
               value={author}
               onChange={(event) => setAuthor(event.target.value)}
               maxLength={AUTHOR_MAX_LENGTH}
-              placeholder="닉네임"
+              placeholder="이름(닉네임)"
               autoComplete="nickname"
-              className="h-10 w-[100px] rounded-full border border-primary-300 px-4 text-caption text-ink placeholder:text-ink-muted sm:w-[120px]"
+              className="h-10 w-[128px] rounded-full border border-primary-300 px-4 text-caption text-ink placeholder:text-ink-muted sm:w-[140px]"
             />
 
             {/* 태블릿/PC: 카드 안 오른쪽 */}
