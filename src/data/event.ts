@@ -1,14 +1,15 @@
 export const EVENT_INFO = {
   name: "2026 서울주거포럼",
   theme: "전월세시장 현황 진단 및 안정화 방안 모색",
+  themeSubtitle: "세입자도 안심하고 사는 서울, 전월세 해법을 묻다",
   /** 홈 히어로에서 목업과 동일하게 두 줄로 끊어 노출한다. */
   themeLines: ["전월세시장 현황 진단 및", "안정화 방안 모색"],
   date: "2026.10.07",
   day: "수",
   dateLabel: "2026.10.07 (수)",
   dateLong: "2026년 10월 7일(수)",
-  time: "12:30-16:00",
-  timeRange: "12:30~16:00",
+  time: "13:00-16:00",
+  timeRange: "13:00~16:00",
   venue: "한국프레스센터 20층 국제회의장",
   address: "서울특별시 중구 세종대로 124",
   host: "서울특별시",
@@ -31,6 +32,10 @@ export const EVENT_INFO = {
       logo: { src: "/images/logos/organizers/the-seoul-institute-logo.svg", width: 203, height: 51, displayHeight: 40 },
     },
   ],
-  inquiryPhone: "00",
-  inquiryEmail: "00",
+  /** 사전 참가 등록 구글 폼 */
+  registrationFormUrl: "https://forms.gle/hjzagXfDhAcFzwcX6",
+  inquiryOffice: "2026 서울주거포럼 운영사무국",
+  inquiryPhone: "02-706-0168",
+  inquiryHours: "10:00~17:00",
+  inquiryEmail: "2026seoulhousingforum@gmail.com",
 } as const;

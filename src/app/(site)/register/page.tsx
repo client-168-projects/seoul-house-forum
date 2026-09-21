@@ -60,7 +60,13 @@ export default function RegisterPage() {
             <p>{EVENT_INFO.time}</p>
             <p>{EVENT_INFO.venue}</p>
           </div>
-          <Button variant="pill" href="#" className="mt-8 w-full max-w-[343px] text-h4 lg:mt-[41px]">
+          <Button
+            variant="pill"
+            href={EVENT_INFO.registrationFormUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 w-full max-w-[343px] text-h4 lg:mt-[41px]"
+          >
             사전 참가 등록하기
           </Button>
         </div>

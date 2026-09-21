@@ -60,7 +60,7 @@ export default function ForumLocationPage() {
                   }
                 >
                   <div className="flex flex-col gap-4 lg:flex-row lg:gap-[16px]">
-                    <RouteBadge tone={stop.tone} className="self-start lg:w-[150px] lg:justify-center">
+                    <RouteBadge tone={stop.tone} className="self-start lg:min-w-[150px] lg:justify-center">
                       {stop.stop}
                     </RouteBadge>
                     <dl className="space-y-[10px]">

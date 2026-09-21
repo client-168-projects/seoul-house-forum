@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
-import Image from "next/image";
 import { PosterViewer } from "@/components/forum/PosterViewer";
 import { EVENT_INFO } from "@/data/event";
 import { cn } from "@/utils/cn";
@@ -19,20 +18,22 @@ interface OverviewRow {
 
 const ROWS: OverviewRow[] = [
   { tag: "행사", value: EVENT_INFO.name },
-  { tag: "주제", value: EVENT_INFO.theme },
+  {
+    tag: "주제",
+    value: (
+      <>
+        <span className="block font-extrabold">{EVENT_INFO.theme}</span>
+        <span className="mt-1 block text-body-lg font-semibold text-ink-soft">
+          {EVENT_INFO.themeSubtitle}
+        </span>
+      </>
+    ),
+  },
   { tag: "일시", value: `${EVENT_INFO.dateLong} ${EVENT_INFO.timeRange}` },
   { tag: "장소", value: EVENT_INFO.venue },
   {
-    tag: "주최",
-    value: (
-      <Image
-        src="/images/hero/logos/seoul-city-logo.svg"
-        alt={EVENT_INFO.host}
-        width={185}
-        height={48}
-        className="h-[28px] w-auto"
-      />
-    ),
+    tag: "주최·주관",
+    value: `${EVENT_INFO.host}/${EVENT_INFO.organizers.map((organizer) => organizer.name).join(", ")}`,
   },
 ];
 
@@ -54,14 +55,14 @@ export default function ForumOverviewPage() {
                 <div
                   key={row.tag}
                   className={cn(
-                    "flex items-center gap-4 px-2 py-3 lg:h-[65px] lg:gap-[28px] lg:py-0",
+                    "flex items-center gap-4 px-2 py-3 lg:min-h-[65px] lg:gap-[28px] lg:py-[14px]",
                     odd ? "bg-surface-muted" : "bg-white",
                   )}
                 >
-                  <dt>
+                  <dt className="shrink-0 lg:w-[90px]">
                     <span
                       className={cn(
-                        "inline-flex h-[31px] w-[58px] items-center justify-center rounded-full text-caption font-bold text-white",
+                        "inline-flex h-[31px] min-w-[58px] items-center justify-center rounded-full px-3 text-caption font-bold whitespace-nowrap text-white",
                         odd ? "bg-primary-800" : "bg-primary-600",
                       )}
                     >

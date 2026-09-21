@@ -48,7 +48,7 @@ export function OpinionForm({ turnstileSiteKey }: OpinionFormProps) {
     if (trimmed.length < OPINION_MIN_LENGTH)
       return `의견을 ${OPINION_MIN_LENGTH}자 이상 입력해 주세요.`;
     if (!district) return "지역구를 선택해 주세요.";
-    if (!author.trim()) return "이름을 입력해 주세요.";
+    if (!author.trim()) return "이름(닉네임)을 입력해 주세요.";
     return null;
   };
 
@@ -203,7 +203,7 @@ export function OpinionForm({ turnstileSiteKey }: OpinionFormProps) {
             </div>
 
             <label htmlFor="opinion-author" className="sr-only">
-              이름
+              이름(닉네임)
             </label>
             <input
               id="opinion-author"
@@ -212,7 +212,7 @@ export function OpinionForm({ turnstileSiteKey }: OpinionFormProps) {
               value={author}
               onChange={(event) => setAuthor(event.target.value)}
               maxLength={AUTHOR_MAX_LENGTH}
-              placeholder="이름"
+              placeholder="닉네임"
               autoComplete="nickname"
               className="h-10 w-[100px] rounded-full border border-primary-300 px-4 text-caption text-ink placeholder:text-ink-muted sm:w-[120px]"
             />

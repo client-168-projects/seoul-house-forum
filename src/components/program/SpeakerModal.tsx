@@ -54,18 +54,26 @@ export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
 
         <div className="grid gap-8 lg:grid-cols-[442px_437px] lg:gap-[36px]">
           <div>
+            {/* 사진이 준비되지 않은 연사는 회색 사각형으로 자리만 잡아 둔다. */}
             <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-surface-muted">
-              <Image
-                src={speaker.photo.src}
-                alt=""
-                width={speaker.photo.width}
-                height={speaker.photo.height}
-                sizes="442px"
-                className="absolute bottom-0 left-1/2 h-[92.5%] w-auto max-w-full -translate-x-1/2"
-              />
+              {speaker.photo && (
+                <Image
+                  src={speaker.photo.src}
+                  alt=""
+                  width={speaker.photo.width}
+                  height={speaker.photo.height}
+                  sizes="442px"
+                  className="absolute bottom-0 left-1/2 h-[92.5%] w-auto max-w-full -translate-x-1/2"
+                />
+              )}
             </div>
-            <p className="mt-[18px] text-body-lg font-extrabold text-ink underline decoration-2 underline-offset-[6px]">
-              {speaker.name}
+            <p className="mt-[18px] flex items-baseline gap-[10px]">
+              <span className="text-body-lg font-extrabold text-ink underline decoration-2 underline-offset-[6px]">
+                {speaker.name}
+              </span>
+              {speaker.role && (
+                <span className="text-caption font-semibold text-primary-800">{speaker.role}</span>
+              )}
             </p>
             <p className="mt-[12px] text-body font-semibold text-ink">
               {speaker.affiliation}
@@ -77,18 +85,35 @@ export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
               <h3 className="text-body-lg font-extrabold text-primary-800">
                 약력
               </h3>
-              <p className="mt-[9px] text-caption font-medium text-ink-soft">
-                {speaker.bio}
+              <p className="mt-[9px] text-caption font-medium break-keep text-ink-soft">
+                {speaker.bioSummary}
               </p>
+              {speaker.bioSections.map((section) => (
+                <div key={section.heading} className="mt-[18px]">
+                  <h4 className="text-body font-extrabold text-ink">{section.heading}</h4>
+                  <ul className="mt-[7px] space-y-[5px] text-caption font-medium break-keep text-ink-soft">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="shrink-0 text-ink-muted" aria-hidden="true">
+                          &bull;
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </section>
-            <section>
-              <h3 className="text-body-lg font-extrabold text-primary-800">
-                {speaker.sessionLabel}에 대한 초록
-              </h3>
-              <p className="mt-[9px] text-caption font-medium text-ink-soft">
-                {speaker.abstract}
-              </p>
-            </section>
+            {speaker.abstract && speaker.sessionLabel && (
+              <section>
+                <h3 className="text-body-lg font-extrabold text-primary-800">
+                  {speaker.sessionLabel}에 대한 초록
+                </h3>
+                <p className="mt-[9px] text-caption font-medium break-keep text-ink-soft">
+                  {speaker.abstract}
+                </p>
+              </section>
+            )}
           </div>
         </div>
       </div>

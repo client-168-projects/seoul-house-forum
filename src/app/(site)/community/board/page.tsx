@@ -9,7 +9,7 @@ import { getEnv } from "@/lib/server/cloudflare";
 import { listApprovedPosts } from "@/lib/server/repositories/boardPosts";
 
 const DESCRIPTION =
-  "서울의 좋은 주거환경을 위해 무엇이 필요한지 의견을 남기고 함께 나눠요.";
+  "서울의 전월세 시장이 안정화되기 위해 무엇이 필요한지 의견을 남기고 함께 나눠요.";
 
 export const metadata: Metadata = {
   title: "자유게시판",
@@ -36,8 +36,10 @@ export default async function BoardPage() {
         <Container className="relative">
           <div className="grid gap-8 lg:grid-cols-[1fr_600px] lg:items-start lg:gap-12">
             <div className="text-center lg:text-left">
-              <h2 className="font-heading text-section-title leading-[1.3]">
-                서울의 좋은 주거환경,
+              <h2 className="font-heading text-section-title leading-[1.3] break-keep">
+                서울의 전월세 시장이
+                <br />
+                안정화되기 위해
                 <br />
                 무엇이 필요할까요?
               </h2>

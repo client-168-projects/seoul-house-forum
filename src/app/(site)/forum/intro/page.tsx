@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
+import { EVENT_INFO } from "@/data/event";
 import { INTRO_CONTENT } from "@/data/intro";
 
 export const metadata: Metadata = {
@@ -17,6 +18,12 @@ export default function ForumIntroPage() {
         <h2 className="text-section-title text-ink">
           {INTRO_CONTENT.heading}
         </h2>
+        <div className="mx-auto mt-5 max-w-205 break-keep lg:mt-[30px]">
+          <p className="text-h4 font-extrabold text-ink">{EVENT_INFO.theme}</p>
+          <p className="mt-2 text-body-lg font-semibold text-ink-soft">
+            {EVENT_INFO.themeSubtitle}
+          </p>
+        </div>
         <p className="mt-5 text-subtitle text-primary-800 lg:mt-[30px]">
           {INTRO_CONTENT.subheading}
         </p>

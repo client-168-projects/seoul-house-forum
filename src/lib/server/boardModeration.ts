@@ -42,7 +42,7 @@ export function validateOpinion(raw: Record<string, unknown>): ValidationResult 
     return { ok: false, message: `의견은 ${OPINION_MAX_LENGTH}자 이내로 입력해 주세요.` };
   }
   if (!author || author.length > AUTHOR_MAX_LENGTH) {
-    return { ok: false, message: `이름을 ${AUTHOR_MAX_LENGTH}자 이내로 입력해 주세요.` };
+    return { ok: false, message: `이름(닉네임)을 ${AUTHOR_MAX_LENGTH}자 이내로 입력해 주세요.` };
   }
   if (!(SEOUL_DISTRICTS as readonly string[]).includes(district)) {
     return { ok: false, message: "지역구를 선택해 주세요." };

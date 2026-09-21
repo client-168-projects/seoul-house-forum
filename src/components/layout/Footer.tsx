@@ -5,8 +5,9 @@ import { Container } from "@/components/common/Container";
 
 const INFO_ROWS = [
   { label: "장소", value: `${EVENT_INFO.venue} · ${EVENT_INFO.address}` },
-  { label: "문의", value: EVENT_INFO.inquiryPhone },
-  { label: "연락처 / 이메일", value: EVENT_INFO.inquiryEmail },
+  { label: "문의", value: EVENT_INFO.inquiryOffice },
+  { label: "T.", value: `${EVENT_INFO.inquiryPhone}(${EVENT_INFO.inquiryHours})` },
+  { label: "E-mail.", value: EVENT_INFO.inquiryEmail },
 ];
 
 /**

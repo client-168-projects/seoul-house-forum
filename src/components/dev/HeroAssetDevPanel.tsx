@@ -13,7 +13,7 @@ import Image from "next/image";
  * 2560px:
  *   Left:   w-[1024px] left-[-8px]   bottom-[-246px]
  *   Right:  w-[1024px] right-[-1px]  top-[124px]
- *   Center: h-[726px]  right-[600px] top-[357px]
+ *   Center: h-[640px]  right-[600px] top-[400px]
  */
 
 // 1920px 기준값
@@ -27,7 +27,7 @@ const V1920 = {
 const V2560 = {
   left: { width: 1024, x: -8, y: -246 },
   right: { width: 1024, x: -1, y: 124 },
-  center: { height: 726, right: 600, top: 357 },
+  center: { height: 640, right: 600, top: 400 },
 };
 
 // 선형 보간 CSS 생성: 1920px에서 v1, 2560px에서 v2

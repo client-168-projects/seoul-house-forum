@@ -1,7 +1,7 @@
 import { SITE_URL } from "@/constants/site";
 import { EVENT_INFO } from "@/data/event";
 
-/** EVENT_INFO의 표시용 날짜/시간(2026.10.07, 12:30-16:00)을 KST ISO 문자열로 바꾼다. */
+/** EVENT_INFO의 표시용 날짜/시간(2026.10.07, 13:00-16:00)을 KST ISO 문자열로 바꾼다. */
 function toIso(time: string): string {
   const [hour, minute] = time.split(":");
   return `${EVENT_INFO.date.replaceAll(".", "-")}T${hour.padStart(2, "0")}:${minute}:00+09:00`;

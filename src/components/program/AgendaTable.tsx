@@ -22,12 +22,12 @@ function SingleSlotRow({ row }: { row: AgendaRow }) {
     <div
       className={cn(
         "grid gap-2 py-6 lg:grid-cols-[17%_16%_1fr] lg:gap-0 lg:py-9",
-        slot.content.kind === "session" ? "lg:items-start" : "lg:items-center",
+        slot.content?.kind === "session" ? "lg:items-start" : "lg:items-center",
       )}
     >
       <SlotTime slot={slot} />
       <p className="text-body font-bold text-primary-800">{row.label}</p>
-      <AgendaContentView content={slot.content} />
+      {slot.content && <AgendaContentView content={slot.content} />}
     </div>
   );
 }
@@ -70,7 +70,7 @@ function GroupedSlotRow({ row }: { row: AgendaRow }) {
               style={slotRowStyle}
             >
               <p className="text-body font-bold text-primary-800 lg:self-center">{slot.subLabel}</p>
-              <AgendaContentView content={slot.content} />
+              {slot.content && <AgendaContentView content={slot.content} />}
             </div>
           </div>
         );
