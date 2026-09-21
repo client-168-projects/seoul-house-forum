@@ -58,8 +58,7 @@ function getDriver(): StorageDriver {
   if (url && serviceRoleKey && bucket) return createSupabaseDriver({ url, serviceRoleKey, bucket });
 
   // R2 바인딩은 현재 wrangler 설정에 없다. 같은 계정에 버킷을 만들어 FILES 바인딩을 추가하면 이 경로를 탄다.
-  const r2 = (env as { FILES?: R2Bucket }).FILES;
-  if (r2) return createR2Driver(r2);
+  if (env.FILES) return createR2Driver(env.FILES);
 
   throw new StorageError(
     "파일 저장소가 설정되지 않았습니다. SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_STORAGE_BUCKET을 확인해 주세요.",

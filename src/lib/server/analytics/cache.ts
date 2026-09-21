@@ -9,9 +9,13 @@ function cacheKey(propertyId: string, range: AnalyticsRangeKey) {
   return `${CACHE_ORIGIN}/${propertyId}/${range}`;
 }
 
-/** Workers에서만 Cache API를 쓸 수 있다. 로컬 node 런타임에서는 캐시 없이 동작한다. */
+/**
+ * Workers에서만 쓸 수 있는 기본 캐시. 표준 CacheStorage 타입에는 default가 없어 직접 단언한다.
+ * 로컬 node 런타임에서는 null이 되어 캐시 없이 동작한다.
+ */
 function getCache(): Cache | null {
-  return typeof caches !== "undefined" && "default" in caches ? caches.default : null;
+  if (typeof caches === "undefined") return null;
+  return (caches as unknown as { default?: Cache }).default ?? null;
 }
 
 export async function readCachedReport(
