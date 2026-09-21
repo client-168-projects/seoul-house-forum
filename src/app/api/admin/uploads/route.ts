@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { guardAdminApi } from "@/lib/server/auth/dal";
 import { jsonError } from "@/lib/server/http";
+import { StorageError } from "@/lib/server/storage/driver";
 import { storeUpload, UPLOAD_LIMITS, UploadError, type UploadKind } from "@/lib/server/storage";
 
 /** multipart/form-data: file, kind("attachments" | "editor") */
@@ -29,6 +30,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(await storeUpload(file, kind as UploadKind), { status: 201 });
   } catch (error) {
     if (error instanceof UploadError) return jsonError(error.message, 422);
+    // 저장소 설정 누락/장애는 운영자가 바로 알 수 있게 그대로 알린다.
+    if (error instanceof StorageError) {
+      console.error("[uploads]", error);
+      return jsonError(error.message, 503);
+    }
     throw error;
   }
 }
