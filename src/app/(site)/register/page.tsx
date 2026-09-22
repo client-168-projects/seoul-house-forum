@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
@@ -6,10 +7,13 @@ import { Container } from "@/components/common/Container";
 import { Button } from "@/components/ui/Button";
 import { EVENT_INFO } from "@/data/event";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "참가 등록",
-  description: "2026 서울주거포럼 사전 참가 등록 안내",
-};
+  description:
+    "2026 서울주거포럼 사전 참가 등록. 관심 있는 시민 누구나 무료로 참여할 수 있습니다. 2026년 10월 7일(수) 한국프레스센터 20층 국제회의장.",
+  path: "/register",
+  keywords: ["서울주거포럼 사전등록", "서울주거포럼 참가 신청", "주거정책 포럼 참가", "무료 포럼 등록"],
+});
 
 const INTRO_LINES = [
   `${EVENT_INFO.name}에 여러분을 초대합니다.`,

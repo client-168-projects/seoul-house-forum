@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
 import { BoardToolbar } from "@/components/community/BoardToolbar";
@@ -8,12 +9,12 @@ import { parsePage } from "@/lib/server/pagination";
 import { listNotices } from "@/lib/server/repositories/notices";
 import { withPageParam } from "@/utils/pagination";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "공지사항",
-  description: "2026 서울주거포럼 공지사항",
-  alternates: { canonical: "/community/notice" },
-  openGraph: { title: "공지사항 | 2026 서울주거포럼", description: "2026 서울주거포럼 공지사항" },
-};
+  description: "2026 서울주거포럼 공지사항. 사전등록, 프로그램 변경, 현장 안내 등 포럼 운영 소식을 전합니다.",
+  path: "/community/notice",
+  keywords: ["서울주거포럼 공지사항", "서울주거포럼 안내", "포럼 사전등록 공지"],
+});
 
 /** D1을 요청마다 조회하므로 정적 생성하지 않는다. */
 export const dynamic = "force-dynamic";

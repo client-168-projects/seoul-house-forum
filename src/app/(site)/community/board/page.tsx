@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import { Container } from "@/components/common/Container";
 import { CommunityHero } from "@/components/community/CommunityHero";
@@ -11,15 +12,12 @@ import { listApprovedPosts } from "@/lib/server/repositories/boardPosts";
 const DESCRIPTION =
   "서울의 전월세 시장이 안정화되기 위해 무엇이 필요한지 의견을 남기고 함께 나눠요.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "자유게시판",
   description: DESCRIPTION,
-  alternates: { canonical: "/community/board" },
-  openGraph: {
-    title: "자유게시판 | 2026 서울주거포럼",
-    description: DESCRIPTION,
-  },
-};
+  path: "/community/board",
+  keywords: ["서울주거포럼 자유게시판", "전월세 시민의견", "서울 주거 의견", "주거정책 시민 참여"],
+});
 
 export const dynamic = "force-dynamic";
 

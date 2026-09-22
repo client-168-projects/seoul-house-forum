@@ -7,6 +7,8 @@ import { Container } from "@/components/common/Container";
 import { JsonLd } from "@/components/common/JsonLd";
 import { AttachmentList } from "@/components/community/AttachmentList";
 import { Button } from "@/components/ui/Button";
+import { SITE_NAME } from "@/constants/nav";
+import { OG_IMAGE } from "@/constants/site";
 import { buildBreadcrumbJsonLd, buildNoticeJsonLd } from "@/lib/jsonLd";
 import { parseId } from "@/lib/server/http";
 import { getNotice, getNoticeNeighbors } from "@/lib/server/repositories/notices";
@@ -31,7 +33,18 @@ export async function generateMetadata({ params }: PageProps<"/community/notice/
     title: notice.title,
     description,
     alternates: { canonical: `/community/notice/${notice.id}` },
-    openGraph: { title: notice.title, description, type: "article", publishedTime: notice.createdAt },
+    openGraph: {
+      title: notice.title,
+      description,
+      type: "article",
+      siteName: SITE_NAME,
+      locale: "ko_KR",
+      url: `/community/notice/${notice.id}`,
+      publishedTime: notice.createdAt,
+      modifiedTime: notice.updatedAt,
+      images: [OG_IMAGE],
+    },
+    twitter: { card: "summary_large_image", title: notice.title, description, images: [OG_IMAGE.url] },
   };
 }
 

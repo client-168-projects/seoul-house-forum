@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import type { ReactNode } from "react";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
@@ -6,10 +7,13 @@ import { PosterViewer } from "@/components/forum/PosterViewer";
 import { EVENT_INFO } from "@/data/event";
 import { cn } from "@/utils/cn";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "행사 개요",
-  description: "2026 서울주거포럼 행사 개요 안내",
-};
+  description:
+    "2026 서울주거포럼 행사 개요. 2026년 10월 7일(수) 13:00~16:00, 한국프레스센터 20층 국제회의장. 주최·주관 서울특별시, 한국도시부동산학회, 한국부동산분석학회, 서울연구원.",
+  path: "/forum/overview",
+  keywords: ["서울주거포럼 행사 개요", "서울주거포럼 일정", "한국프레스센터 국제회의장", "주거정책 포럼 개요"],
+});
 
 interface OverviewRow {
   tag: string;

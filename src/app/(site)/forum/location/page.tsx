@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import type { ReactNode } from "react";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
@@ -6,10 +7,13 @@ import { RouteBadge, RouteSteps } from "@/components/forum/RouteBadge";
 import { EVENT_INFO } from "@/data/event";
 import { BUS_STOPS, CAR_ROUTES, MAP_EMBED_URL, SUBWAY_ROUTES } from "@/data/location";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "오시는 길",
-  description: "2026 서울주거포럼 행사장 오시는 길 안내",
-};
+  description:
+    "2026 서울주거포럼 행사장 오시는 길. 한국프레스센터 20층 국제회의장(서울특별시 중구 세종대로 124) 지하철·버스·자가용 경로 안내.",
+  path: "/forum/location",
+  keywords: ["한국프레스센터 오시는 길", "프레스센터 국제회의장 위치", "시청역 프레스센터", "서울주거포럼 장소"],
+});
 
 /**
  * 목업(temp/오시는길.png) 기준 1920px 프레임 수치

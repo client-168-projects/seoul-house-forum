@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/metadata";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
 import { EVENT_INFO } from "@/data/event";
 import { INTRO_CONTENT } from "@/data/intro";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "2026 서울주거포럼 소개",
   description:
-    "2026 서울주거포럼은 서울특별시가 시민의 안정된 삶의 터전을 위해 마련한 시민 참여형 주거정책 소통의 장입니다.",
-};
+    "2026 서울주거포럼은 서울특별시가 시민의 안정된 삶의 터전을 위해 마련한 시민 참여형 주거정책 소통의 장입니다. 주제는 전월세시장 현황 진단 및 안정화 방안 모색입니다.",
+  path: "/forum/intro",
+  keywords: ["서울주거포럼 소개", "서울 주거정책 포럼", "시민 참여형 주거정책", "전월세시장 안정화"],
+});
 
 export default function ForumIntroPage() {
   return (

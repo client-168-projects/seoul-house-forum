@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/constants/site";
+import { OG_IMAGE, SITE_URL } from "@/constants/site";
 import { EVENT_INFO } from "@/data/event";
 
 /** EVENT_INFO의 표시용 날짜/시간(2026.10.07, 13:00-16:00)을 KST ISO 문자열로 바꾼다. */
@@ -15,13 +15,28 @@ const ORGANIZATION = {
   url: EVENT_INFO.hostUrl,
 } as const;
 
+/** 사이트 자체를 알리는 구조화 데이터. 검색 결과의 사이트 이름 표기에 쓰인다. */
+export function buildWebSiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: EVENT_INFO.name,
+    alternateName: "서울주거포럼",
+    url: SITE_URL,
+    inLanguage: "ko",
+    description: `${EVENT_INFO.theme} - ${EVENT_INFO.themeSubtitle}`,
+    publisher: ORGANIZATION,
+  };
+}
+
 /** 행사 구조화 데이터. 검색 결과에 일시·장소가 함께 표시되도록 홈에 넣는다. */
 export function buildEventJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Event",
     name: EVENT_INFO.name,
-    description: EVENT_INFO.theme,
+    description: `${EVENT_INFO.theme} - ${EVENT_INFO.themeSubtitle}`,
+    image: [`${SITE_URL}${OG_IMAGE.url}`],
     startDate: toIso(startTime),
     endDate: toIso(endTime),
     eventStatus: "https://schema.org/EventScheduled",

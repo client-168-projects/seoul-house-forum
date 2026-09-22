@@ -8,26 +8,26 @@ import Image from "next/image";
  * 1920px:
  *   Left:   w-[793px]  left-[-34px]  bottom-[-177px]
  *   Right:  w-[656px]  right-[-15px] top-[110px]
- *   Center: h-[518px]  right-[410px] top-[245px]
+ *   Center: h-[520px]  right-[410px] bottom-[0px]
  *
  * 2560px:
  *   Left:   w-[1024px] left-[-8px]   bottom-[-246px]
  *   Right:  w-[1024px] right-[-1px]  top-[124px]
- *   Center: h-[640px]  right-[600px] top-[400px]
+ *   Center: h-[640px]  right-[600px] bottom-[0px]
  */
 
 // 1920px 기준값
 const V1920 = {
   left: { width: 793, x: -34, y: -177 },
   right: { width: 656, x: -15, y: 110 },
-  center: { height: 518, right: 410, top: 245 },
+  center: { height: 520, right: 410, bottom: 0 },
 };
 
 // 2560px 기준값
 const V2560 = {
   left: { width: 1024, x: -8, y: -246 },
   right: { width: 1024, x: -1, y: 124 },
-  center: { height: 640, right: 600, top: 400 },
+  center: { height: 640, right: 600, bottom: 0 },
 };
 
 // 선형 보간 CSS 생성: 1920px에서 v1, 2560px에서 v2
@@ -89,7 +89,7 @@ export function HeroAssetDevPanel() {
         style={{
           height: lerp(V1920.center.height, V2560.center.height),
           right: lerp(V1920.center.right, V2560.center.right),
-          top: lerp(V1920.center.top, V2560.center.top),
+          bottom: lerp(V1920.center.bottom, V2560.center.bottom),
         }}
       />
     </>
