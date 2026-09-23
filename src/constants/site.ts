@@ -53,3 +53,9 @@ export const PUBLIC_ROUTES = [
   "/community/notice",
   "/community/board",
 ] as const;
+
+/**
+ * GA4 웹 스트림 측정 ID. 페이지 소스에 그대로 노출되는 공개 값이다.
+ * 공개 페이지((site) 레이아웃)에만 태그를 넣어 관리자 접속은 집계되지 않게 한다.
+ */
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-8V2RJZJLPW";
