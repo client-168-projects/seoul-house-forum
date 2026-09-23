@@ -33,14 +33,14 @@ export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative max-h-full w-full max-w-[996px] overflow-y-auto rounded-lg bg-white px-6 pt-16 pb-8 lg:px-[40px] lg:pt-[80px] lg:pb-[40px]"
+        className="relative max-h-full w-full max-w-[996px] overflow-y-auto rounded-lg bg-white px-6 pt-14 pb-8 lg:px-[40px] lg:pt-[56px] lg:pb-[40px]"
         onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="닫기"
-          className="absolute top-[22px] right-[22px] flex h-11 w-11 items-center justify-center text-ink-soft hover:text-ink"
+          className="absolute top-2 right-2 flex h-11 w-11 items-center justify-center text-ink-soft hover:text-ink"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
@@ -104,16 +104,6 @@ export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
                 </div>
               ))}
             </section>
-            {speaker.abstract && speaker.sessionLabel && (
-              <section>
-                <h3 className="text-body-lg font-extrabold text-primary-800">
-                  {speaker.sessionLabel}에 대한 초록
-                </h3>
-                <p className="mt-[9px] text-caption font-medium break-keep text-ink-soft">
-                  {speaker.abstract}
-                </p>
-              </section>
-            )}
           </div>
         </div>
       </div>

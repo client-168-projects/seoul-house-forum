@@ -52,4 +52,5 @@ export const SEOUL_DISTRICTS = [
   "종로구",
   "중구",
   "중랑구",
+  "기타",
 ] as const;

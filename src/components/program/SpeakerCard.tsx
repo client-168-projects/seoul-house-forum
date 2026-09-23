@@ -22,15 +22,14 @@ export function SpeakerCard({ speaker, onSelect }: SpeakerCardProps) {
       <span className="inline-flex h-[32px] items-center rounded-[3px] bg-primary-800 px-5 text-caption font-bold text-white">
         {speaker.sessionLabel}
       </span>
-      {/* 제목 줄 수가 달라도 카드의 사진 영역 높이가 어긋나지 않도록 두 줄 높이를 확보한다. */}
-      <p className="mt-[12px] min-h-[3em] text-h4 break-keep text-ink">
+      <p className="mt-[12px] text-h4 break-keep text-ink">
         {speaker.sessionTitle}
       </p>
     </>
   );
 
   const photoBlock = (
-    <div className="relative mt-6 aspect-square overflow-hidden rounded-lg bg-surface-muted transition-colors duration-200 first:mt-0 group-hover:bg-primary-800 lg:mt-[34px]">
+    <div className="relative mt-5 aspect-square overflow-hidden rounded-lg bg-surface-muted transition-colors duration-200 first:mt-0 group-hover:bg-primary-800 lg:mt-6">
       <span className="absolute top-[24px] left-[20px] z-10 flex items-baseline gap-2 text-ink transition-colors group-hover:text-white">
         <span className="text-body font-bold underline decoration-2 underline-offset-[5px]">
           {speaker.name}

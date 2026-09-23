@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import { Container } from "@/components/common/Container";
+import { BoardHeadline } from "@/components/community/BoardHeadline";
 import { CommunityHero } from "@/components/community/CommunityHero";
 import { OpinionBoard } from "@/components/community/OpinionBoard";
 import { OpinionForm } from "@/components/community/OpinionForm";
@@ -10,7 +11,7 @@ import { getEnv } from "@/lib/server/cloudflare";
 import { listApprovedPosts } from "@/lib/server/repositories/boardPosts";
 
 const DESCRIPTION =
-  "서울의 전월세 시장이 안정화되기 위해 무엇이 필요한지 의견을 남기고 함께 나눠요.";
+  "여러분이 보시는 서울 전월세 시장 불안정의 원인과 그 해법에 대한 의견을 남기고 함께 나눠요.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "자유게시판",
@@ -32,19 +33,17 @@ export default async function BoardPage() {
 
       <section className="relative pt-8 pb-24 lg:pt-[36px] lg:pb-[240px]">
         <Container className="relative">
-          <div className="grid gap-8 lg:grid-cols-[1fr_600px] lg:items-start lg:gap-12">
-            <div className="text-center lg:text-left">
-              <h2 className="font-heading text-section-title leading-[1.3] break-keep">
-                서울의 전월세 시장이
-                <br />
-                안정화되기 위해
-                <br />
-                무엇이 필요할까요?
-              </h2>
+          {/*
+            폼은 피그마대로 600px을 유지한다. 타이틀이 길어 lg 폭에서는 옆에 들어가지 않으므로
+            2단 배치는 xl부터 하고, 그 아래는 타이틀 위·폼 아래로 쌓는다.
+          */}
+          <div className="grid gap-8 xl:grid-cols-[1fr_600px] xl:items-center xl:gap-12">
+            <div className="text-center xl:text-left">
+              <BoardHeadline />
               <p className="mt-4 text-body-lg text-white/85 lg:mt-5">
                 여러분의 소중한 의견을 남겨주세요.
                 <br />
-                남겨주신 의견은 운영자 검수 후 공유됩니다.
+                남겨주신 의견은 순차적으로 공개됩니다.
               </p>
             </div>
             <OpinionForm turnstileSiteKey={turnstileSiteKey} />

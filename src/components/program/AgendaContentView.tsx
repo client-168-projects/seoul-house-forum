@@ -36,10 +36,13 @@ export function AgendaContentView({ content }: AgendaContentViewProps) {
     case "panel":
       return (
         <div className="space-y-3 text-body text-ink">
-          <p className="text-primary-700">
-            <span className="font-bold">{content.moderator.name}</span>{" "}
-            {content.moderator.affiliation}
-          </p>
+          <div className="flex gap-2">
+            <span className="shrink-0 font-bold">{content.moderatorLabel}</span>
+            <p className="text-primary-700">
+              <span className="font-bold">{content.moderator.name}</span>{" "}
+              {content.moderator.affiliation}
+            </p>
+          </div>
           <div className="flex gap-2">
             <span className="shrink-0 font-bold">{content.discussionLabel}</span>
             <p className="text-primary-700">

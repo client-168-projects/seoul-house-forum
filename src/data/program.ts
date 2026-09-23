@@ -42,7 +42,7 @@ export const AGENDA_ROWS: AgendaRow[] = [
         content: {
           kind: "session",
           badge: "주제",
-          title: "전월세 제도 및 동향과 불안정 원인 진단",
+          title: "전월세 시장 불안정 원인 진단",
           presenter: { name: "이창무", affiliation: "서울특별시 총괄건축가" },
         },
       },
@@ -59,7 +59,7 @@ export const AGENDA_ROWS: AgendaRow[] = [
           kind: "session",
           badge: "주제",
           category: "민간임대",
-          title: "기업형 민간임대사업자 현황사례조사 및 주택시장 안정효과 분석 용역",
+          title: "기업형 민간임대 국내외 사례 및 활성화방안",
           presenter: { name: "이상영", affiliation: "명지대학교 교수" },
         },
       },
@@ -114,8 +114,9 @@ export const AGENDA_ROWS: AgendaRow[] = [
         subLabel: "패널토론",
         content: {
           kind: "panel",
+          moderatorLabel: "사회",
           moderator: { name: "김인만", affiliation: "김인만부동산경제연구소 대표" },
-          discussionLabel: "종합토론",
+          discussionLabel: "패널",
           panelists: [
             { name: "정재훈", affiliation: "단국대학교 교수" },
             { name: "남원석", affiliation: "서울연구원 선임연구위원" },
@@ -145,7 +146,7 @@ export const SPEAKERS: Speaker[] = [
     name: "이창무",
     affiliation: "서울특별시 총괄건축가 · 한양대학교 도시공학과 교수",
     sessionLabel: "기조발제",
-    sessionTitle: "전월세 제도 및 동향과 불안정 원인 진단",
+    sessionTitle: "전월세 시장 불안정 원인 진단",
     bioSummary:
       "도시계획과 부동산경제를 아우르는 주택시장 연구자로, 전월세 시장에 대한 계량 분석과 부동산 가격지수 개발 등 실증 연구를 20여 년간 이어왔다. 정부와 서울시의 주요 도시·주택 정책 위원회에 참여해 왔으며, 2026년 서울특별시 총괄건축가로 위촉되었다.",
     bioSections: [
@@ -173,8 +174,6 @@ export const SPEAKERS: Speaker[] = [
         ],
       },
     ],
-    abstract:
-      "이번 기조발제에서는 전월세 제도와 시장 동향을 짚고 불안정 원인을 진단해, 서울시 차원의 시장 안정화 방향을 제시합니다.",
   },
   {
     id: "lee-sangyoung",
@@ -182,7 +181,7 @@ export const SPEAKERS: Speaker[] = [
     name: "이상영",
     affiliation: "명지대학교 부동산학과 교수",
     sessionLabel: "주제발표1",
-    sessionTitle: "기업형 민간임대사업자 현황사례조사 및 주택시장 안정효과 분석 용역",
+    sessionTitle: "기업형 민간임대 국내외 사례 및 활성화방안",
     bioSummary:
       "임대주택산업, 리츠(REITs), 도시재생을 주로 연구하는 부동산경제학자로, 국내 대표 부동산 정보업체 부동산114를 창업해 10년간 경영한 뒤 학계로 돌아왔다. 민간임대시장의 정상화와 기업형 임대의 제도적 기반 마련을 꾸준히 제안해 왔다.",
     bioSections: [
@@ -207,11 +206,10 @@ export const SPEAKERS: Speaker[] = [
         ],
       },
     ],
-    abstract: "발표 소개는 준비 중입니다.",
   },
   {
     id: "cho-kangtae",
-    photo: { src: "/images/speakers/cho-kangtae.webp", width: 1156, height: 1080 },
+    photo: { src: "/images/speakers/cho-kangtae.webp", width: 1080, height: 1080 },
     name: "조강태",
     affiliation: "MGRV(맹그로브) 대표",
     sessionLabel: "주제발표2",
@@ -240,7 +238,6 @@ export const SPEAKERS: Speaker[] = [
         ],
       },
     ],
-    abstract: "발표 소개는 준비 중입니다.",
   },
   {
     id: "kim-junhyung",
@@ -273,10 +270,10 @@ export const SPEAKERS: Speaker[] = [
         ],
       },
     ],
-    abstract: "발표 소개는 준비 중입니다.",
   },
   {
     id: "kim-inman",
+    photo: { src: "/images/speakers/kim-inman.webp", width: 1080, height: 1080 },
     name: "김인만",
     affiliation: "김인만부동산경제연구소 대표",
     role: "사회",
@@ -303,8 +300,9 @@ export const SPEAKERS: Speaker[] = [
   },
   {
     id: "jung-jaehoon",
+    photo: { src: "/images/speakers/jung-jaehoon.webp", width: 1080, height: 1080 },
     name: "정재훈",
-    affiliation: "단국대학교 도시계획부동산학과 교수",
+    affiliation: "단국대학교 도시계획부동산학부 교수",
     role: "토론",
     bioSummary:
       "부동산 데이터·통계 분석과 AI 기반 가격추정 모형을 연구하는 부동산시장 분석 전문가로, 금융권 부동산 연구 실무와 학계 연구를 두루 경험했다. 부동산 거래정책의 변화가 시장에 미치는 파급효과를 실증적으로 분석하고 있다.",
@@ -337,6 +335,7 @@ export const SPEAKERS: Speaker[] = [
     affiliation: "서울연구원 선임연구위원",
     role: "토론",
     bioSections: [],
+    hidden: true,
   },
   {
     id: "lee-taehoon",
@@ -344,26 +343,29 @@ export const SPEAKERS: Speaker[] = [
     affiliation: "홈즈컴퍼니 대표",
     role: "토론",
     bioSections: [],
+    hidden: true,
   },
 ];
+
+const VISIBLE_SPEAKERS = SPEAKERS.filter((speaker) => !speaker.hidden);
 
 /** 연사 소개 페이지의 구분. 토론자는 섭외가 끝나는 대로 이 목록에 추가한다. */
 export const SPEAKER_SECTIONS: SpeakerSection[] = [
   {
     title: "기조발제",
-    groups: [{ speakers: SPEAKERS.filter((speaker) => speaker.sessionLabel === "기조발제") }],
+    groups: [{ speakers: VISIBLE_SPEAKERS.filter((speaker) => speaker.sessionLabel === "기조발제") }],
   },
   {
     title: "주제발표",
     groups: [
-      { speakers: SPEAKERS.filter((speaker) => speaker.sessionLabel?.startsWith("주제발표")) },
+      { speakers: VISIBLE_SPEAKERS.filter((speaker) => speaker.sessionLabel?.startsWith("주제발표")) },
     ],
   },
   {
     title: "패널토론",
     groups: [
-      { label: "사회", speakers: SPEAKERS.filter((speaker) => speaker.role === "사회") },
-      { label: "토론", speakers: SPEAKERS.filter((speaker) => speaker.role === "토론") },
+      { label: "사회", speakers: VISIBLE_SPEAKERS.filter((speaker) => speaker.role === "사회") },
+      { label: "토론", speakers: VISIBLE_SPEAKERS.filter((speaker) => speaker.role === "토론") },
     ],
   },
 ];

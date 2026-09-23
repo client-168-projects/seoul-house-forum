@@ -37,10 +37,11 @@ export function Footer() {
           </dl>
         </div>
 
-        <dl className="space-y-4 text-caption lg:justify-self-center">
-          <div className="flex items-center gap-[14px] lg:items-start">
-            <dt className="w-7 shrink-0 text-ink-soft lg:pt-1">주최</dt>
-            <dd>
+        <dl className="flex items-start gap-[14px] text-caption lg:justify-self-center">
+          {/* 모바일은 40px 로고 링크의 세로 중앙에 라벨을 맞춘다. */}
+          <dt className="shrink-0 whitespace-nowrap pt-[11px] text-ink-soft lg:pt-1">주최·주관</dt>
+          <dd className="space-y-4">
+            <div className="flex">
               <LogoLink href={EVENT_INFO.hostUrl} name={EVENT_INFO.host}>
                 <Image
                   src="/images/hero/logos/seoul-city-logo.svg"
@@ -50,11 +51,8 @@ export function Footer() {
                   className="h-auto w-[132px] lg:w-[185px]"
                 />
               </LogoLink>
-            </dd>
-          </div>
-          <div className="flex items-start gap-[14px]">
-            <dt className="w-7 shrink-0 pt-3 text-ink-soft lg:pt-1">주관</dt>
-            <dd className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:gap-x-6 lg:gap-y-3">
+            </div>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:gap-x-6 lg:gap-y-3">
               {EVENT_INFO.organizers.map((organizer) => (
                 <LogoLink key={organizer.name} href={organizer.url} name={organizer.name}>
                   {/* 모바일은 PC 표시 높이의 70%로 줄인다. */}
@@ -68,8 +66,8 @@ export function Footer() {
                   />
                 </LogoLink>
               ))}
-            </dd>
-          </div>
+            </div>
+          </dd>
         </dl>
       </Container>
 

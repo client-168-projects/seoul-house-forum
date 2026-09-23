@@ -15,6 +15,7 @@ export type AgendaContent =
     }
   | {
       kind: "panel";
+      moderatorLabel: string;
       moderator: Presenter;
       discussionLabel: string;
       panelists: Presenter[];
@@ -62,7 +63,8 @@ export interface Speaker {
   /** 약력 도입 문단. 섭외만 끝나고 정보가 아직 없는 인물은 비워 둔다. */
   bioSummary?: string;
   bioSections: SpeakerBioSection[];
-  abstract?: string;
+  /** 약력·사진을 받기 전까지 연사 소개에서 숨긴다. 받으면 이 값을 지우고 정보를 채운다. */
+  hidden?: boolean;
 }
 
 /** 연사 소개 페이지의 구분(기조발제/주제발표/패널토론). groups로 사회·토론을 한 번 더 나눈다. */

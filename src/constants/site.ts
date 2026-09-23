@@ -38,8 +38,8 @@ export const OG_IMAGE = {
  * 값이 비어 있으면 메타태그를 아예 출력하지 않는다.
  */
 export const SITE_VERIFICATION = {
-  google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
-  naver: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION ?? "",
+  google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "ieKZL_Qn6ouqIYVGR6d8S6lTk-NwvAMIYqsCwl2ixNk",
+  naver: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION ?? "b62343e36d4058677e21f8956f337cc3e3dbf4df",
 } as const;
 
 export const PUBLIC_ROUTES = [
