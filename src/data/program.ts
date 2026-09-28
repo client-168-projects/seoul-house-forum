@@ -120,7 +120,7 @@ export const AGENDA_ROWS: AgendaRow[] = [
           panelists: [
             { name: "정재훈", affiliation: "단국대학교 교수" },
             { name: "남원석", affiliation: "서울연구원 선임연구위원" },
-            { name: "이태훈", affiliation: "홈즈컴퍼니 대표" },
+            { name: "이태현", affiliation: "홈즈컴퍼니 대표" },
           ],
         },
       },
@@ -338,8 +338,8 @@ export const SPEAKERS: Speaker[] = [
     hidden: true,
   },
   {
-    id: "lee-taehoon",
-    name: "이태훈",
+    id: "lee-taehyun",
+    name: "이태현",
     affiliation: "홈즈컴퍼니 대표",
     role: "토론",
     bioSections: [],
