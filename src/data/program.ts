@@ -20,12 +20,30 @@ export const AGENDA_ROWS: AgendaRow[] = [
   {
     label: "환영사",
     highlighted: true,
-    slots: [{ timeRange: "13:05~13:10", duration: "5분" }],
+    slots: [
+      {
+        timeRange: "13:05~13:10",
+        duration: "5분",
+        content: { kind: "people", people: [{ name: "김성보", affiliation: "서울특별시 행정2부시장" }] },
+      },
+    ],
   },
   {
     label: "축사",
     highlighted: true,
-    slots: [{ timeRange: "13:10~13:20", duration: "10분" }],
+    slots: [
+      {
+        timeRange: "13:10~13:20",
+        duration: "10분",
+        content: {
+          kind: "people",
+          people: [
+            { name: "이재순", affiliation: "한국부동산분석학회장" },
+            { name: "김지엽", affiliation: "한국도시부동산학회장" },
+          ],
+        },
+      },
+    ],
   },
   {
     label: "사진촬영",
@@ -42,7 +60,7 @@ export const AGENDA_ROWS: AgendaRow[] = [
         content: {
           kind: "session",
           badge: "주제",
-          title: "전월세 시장 불안정 원인 진단",
+          title: "매매시장 규제강화와 전월세시장의 불안",
           presenter: { name: "이창무", affiliation: "서울특별시 총괄건축가" },
         },
       },
@@ -59,7 +77,7 @@ export const AGENDA_ROWS: AgendaRow[] = [
           kind: "session",
           badge: "주제",
           category: "민간임대",
-          title: "기업형 민간임대 국내외 사례 및 활성화방안",
+          title: "기업형 민간임대 국내외 사례 및 활성화 방안",
           presenter: { name: "이상영", affiliation: "명지대학교 교수" },
         },
       },
@@ -121,6 +139,8 @@ export const AGENDA_ROWS: AgendaRow[] = [
             { name: "정재훈", affiliation: "단국대학교 교수" },
             { name: "남원석", affiliation: "서울연구원 선임연구위원" },
             { name: "이태현", affiliation: "홈즈컴퍼니 대표" },
+            { name: "이종아", affiliation: "서울시부동산정책개발센터장" },
+            { name: "김동현", affiliation: "서울신문 부장" },
           ],
         },
       },
@@ -146,7 +166,7 @@ export const SPEAKERS: Speaker[] = [
     name: "이창무",
     affiliation: "서울특별시 총괄건축가 · 한양대학교 도시공학과 교수",
     sessionLabel: "기조발제",
-    sessionTitle: "전월세 시장 불안정 원인 진단",
+    sessionTitle: "매매시장 규제강화와 전월세시장의 불안",
     bioSummary:
       "도시계획과 부동산경제를 아우르는 주택시장 연구자로, 전월세 시장에 대한 계량 분석과 부동산 가격지수 개발 등 실증 연구를 20여 년간 이어왔다. 정부와 서울시의 주요 도시·주택 정책 위원회에 참여해 왔으며, 2026년 서울특별시 총괄건축가로 위촉되었다.",
     bioSections: [
@@ -181,7 +201,7 @@ export const SPEAKERS: Speaker[] = [
     name: "이상영",
     affiliation: "명지대학교 부동산학과 교수",
     sessionLabel: "주제발표1",
-    sessionTitle: "기업형 민간임대 국내외 사례 및 활성화방안",
+    sessionTitle: "기업형 민간임대 국내외 사례 및 활성화 방안",
     bioSummary:
       "임대주택산업, 리츠(REITs), 도시재생을 주로 연구하는 부동산경제학자로, 국내 대표 부동산 정보업체 부동산114를 창업해 10년간 경영한 뒤 학계로 돌아왔다. 민간임대시장의 정상화와 기업형 임대의 제도적 기반 마련을 꾸준히 제안해 왔다.",
     bioSections: [
@@ -388,6 +408,44 @@ export const SPEAKERS: Speaker[] = [
           "코리빙 ‘홈즈스튜디오’, 레지던스 ‘홈즈스테이’, 부동산 중개 네트워크 ‘미스터홈즈’ 등 개발·운영·중개를 결합한 주거서비스 사업 전개",
           "『코로나 시대, 부동산의 앞날』(공저, 2020)",
         ],
+      },
+    ],
+  },
+  {
+    id: "lee-jonga",
+    photo: { src: "/images/speakers/lee-jonga.webp", width: 1080, height: 1080 },
+    name: "이종아",
+    affiliation: "서울특별시 주택실 부동산정책개발센터장",
+    role: "토론",
+    bioSummary:
+      "KB시세 개발 운영을 맡았던 부동산 데이터 전문가이자, 부동산 시장 분석과 부동산 금융 분야 연구위원을 지낸 부동산 전문가다. 2026년 7월부터 서울시 주택실 부동산정책개발센터장으로 부동산 안정 대책 연구, 정책수립에 따른 시장영향분석, 부동산 금융 세제분석과 제도개선 방안 등 부동산정책개발센터 업무를 총괄하고 있다.",
+    bioSections: [
+      {
+        heading: "학력",
+        items: ["강원대학교 부동산학과 박사", "건국대학교 부동산대학원 석사"],
+      },
+      {
+        heading: "주요 경력",
+        items: ["前 KB국민은행 KB부동산 빅데이터센터장", "前 KB 금융지주 경영연구소 부장"],
+      },
+    ],
+  },
+  {
+    id: "kim-donghyun",
+    photo: { src: "/images/speakers/kim-donghyun.webp", width: 1108, height: 1080 },
+    name: "김동현",
+    affiliation: "서울신문 부장",
+    role: "토론",
+    bioSummary:
+      "서울신문에서 경제부와 사회2부 기자로 활동하며 부동산 시장과 주거정책, 서울시 행정과 지역사회 현안을 취재해 온 언론인이다. 주택 공급과 전월세 시장, 부동산 대책이 시민 생활에 미치는 영향을 기사와 칼럼을 통해 다뤄 왔다. 사회2부 시청팀장과 서울시청 출입기자단 간사를 역임했으며, 2025년에는 「대한민국 정신건강리포트–당신의 마음은 안녕하십니까」로 제1회 정신건강 우수보도 기자상을 수상했다.",
+    bioSections: [
+      {
+        heading: "학력",
+        items: ["한국외국어대학교 사회과학대학 행정학과 졸업(2006)"],
+      },
+      {
+        heading: "주요 경력",
+        items: ["서울신문 사회2부 시청팀장(2024)", "한국기자협회 제1회 정신건강 우수보도 기자상(2025)"],
       },
     ],
   },

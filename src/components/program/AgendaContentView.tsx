@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { AgendaContent } from "@/types/program";
 
 interface AgendaContentViewProps {
@@ -13,6 +14,18 @@ export function AgendaContentView({ content }: AgendaContentViewProps) {
             <p key={line}>{line}</p>
           ))}
         </div>
+      );
+
+    case "people":
+      return (
+        <ul className="space-y-1 text-body text-ink">
+          {content.people.map((person) => (
+            <li key={person.name} className="flex flex-wrap items-center gap-x-2.5">
+              <span className="font-bold">{person.name}</span>
+              <span>{person.affiliation}</span>
+            </li>
+          ))}
+        </ul>
       );
 
     case "session":
@@ -47,10 +60,13 @@ export function AgendaContentView({ content }: AgendaContentViewProps) {
             <span className="shrink-0 font-bold">{content.discussionLabel}</span>
             <p className="text-primary-700">
               {content.panelists.map((panelist, index) => (
-                <span key={panelist.name}>
-                  <span className="font-bold">{panelist.name}</span> {panelist.affiliation}
-                  {index < content.panelists.length - 1 && ", "}
-                </span>
+                <Fragment key={panelist.name}>
+                  {/* 이름과 소속이 줄바꿈으로 갈라지지 않도록 한 사람을 한 덩어리로 넘긴다. */}
+                  <span className="inline-block">
+                    <span className="font-bold">{panelist.name}</span> {panelist.affiliation}
+                    {index < content.panelists.length - 1 && ","}
+                  </span>{" "}
+                </Fragment>
               ))}
             </p>
           </div>

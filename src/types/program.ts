@@ -5,6 +5,8 @@ export interface Presenter {
 
 export type AgendaContent =
   | { kind: "text"; lines: string[] }
+  /** 발표 주제 없이 연단에 서는 인물만 노출하는 순서(환영사, 축사). */
+  | { kind: "people"; people: Presenter[] }
   | {
       kind: "session";
       badge: string;
@@ -26,7 +28,7 @@ export interface AgendaSlot {
   duration?: string;
   /** 여러 슬롯을 묶은 행에서만 쓰는 세부 구분명 */
   subLabel?: string;
-  /** 시간과 구분명만 노출하는 순서(환영사, 축사 등)는 비워 둔다. */
+  /** 시간과 구분명만 노출하는 순서(사진촬영, 휴식 등)는 비워 둔다. */
   content?: AgendaContent;
 }
 

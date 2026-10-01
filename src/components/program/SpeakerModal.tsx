@@ -33,14 +33,15 @@ export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative max-h-full w-full max-w-[996px] overflow-y-auto rounded-lg bg-white px-6 pt-14 pb-8 lg:px-[40px] lg:pt-[56px] lg:pb-[40px]"
+        className="relative flex max-h-full w-full max-w-[996px] flex-col overflow-hidden rounded-lg bg-white"
         onClick={(event) => event.stopPropagation()}
       >
+        {/* 스크롤은 안쪽 영역만 하고, 닫기 버튼은 스크롤되지 않는 패널 모서리에 둔다. */}
         <button
           type="button"
           onClick={onClose}
           aria-label="닫기"
-          className="absolute top-2 right-2 flex h-11 w-11 items-center justify-center text-ink-soft hover:text-ink"
+          className="absolute top-2 right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm lg:bg-transparent lg:text-ink-soft lg:backdrop-blur-none lg:hover:text-ink"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
@@ -52,58 +53,60 @@ export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
           </svg>
         </button>
 
-        <div className="grid gap-8 lg:grid-cols-[442px_437px] lg:gap-[36px]">
-          <div>
-            {/* 사진이 준비되지 않은 연사는 회색 사각형으로 자리만 잡아 둔다. */}
-            <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-surface-muted">
-              {speaker.photo && (
-                <Image
-                  src={speaker.photo.src}
-                  alt=""
-                  width={speaker.photo.width}
-                  height={speaker.photo.height}
-                  sizes="442px"
-                  className="absolute bottom-0 left-1/2 h-[92.5%] w-auto max-w-full -translate-x-1/2"
-                />
-              )}
-            </div>
-            <p className="mt-[18px] flex items-baseline gap-[10px]">
-              <span className="text-body-lg font-extrabold text-ink underline decoration-2 underline-offset-[6px]">
-                {speaker.name}
-              </span>
-              {speaker.role && (
-                <span className="text-caption font-semibold text-primary-800">{speaker.role}</span>
-              )}
-            </p>
-            <p className="mt-[12px] text-body font-semibold text-ink">
-              {speaker.affiliation}
-            </p>
-          </div>
-
-          <div className="space-y-[24px]">
-            <section>
-              <h3 className="text-body-lg font-extrabold text-primary-800">
-                약력
-              </h3>
-              <p className="mt-[9px] text-caption font-medium break-keep text-ink-soft">
-                {speaker.bioSummary}
+        <div className="min-h-0 overflow-y-auto px-6 pt-14 pb-8 lg:px-[40px] lg:pt-[56px] lg:pb-[40px]">
+          <div className="grid gap-8 lg:grid-cols-[442px_437px] lg:gap-[36px]">
+            <div>
+              {/* 사진이 준비되지 않은 연사는 회색 사각형으로 자리만 잡아 둔다. */}
+              <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-surface-muted">
+                {speaker.photo && (
+                  <Image
+                    src={speaker.photo.src}
+                    alt=""
+                    width={speaker.photo.width}
+                    height={speaker.photo.height}
+                    sizes="442px"
+                    className="absolute bottom-0 left-1/2 h-[92.5%] w-auto max-w-full -translate-x-1/2"
+                  />
+                )}
+              </div>
+              <p className="mt-[18px] flex items-baseline gap-[10px]">
+                <span className="text-body-lg font-extrabold text-ink underline decoration-2 underline-offset-[6px]">
+                  {speaker.name}
+                </span>
+                {speaker.role && (
+                  <span className="text-caption font-semibold text-primary-800">{speaker.role}</span>
+                )}
               </p>
-              {speaker.bioSections.map((section) => (
-                <div key={section.heading} className="mt-[18px]">
-                  <h4 className="text-body font-extrabold text-ink">{section.heading}</h4>
-                  <ul className="mt-[7px] space-y-[5px] text-caption font-medium break-keep text-ink-soft">
-                    {section.items.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="shrink-0 text-ink-muted" aria-hidden="true">
-                          &bull;
-                        </span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </section>
+              <p className="mt-[12px] text-body font-semibold text-ink">
+                {speaker.affiliation}
+              </p>
+            </div>
+
+            <div className="space-y-[24px]">
+              <section>
+                <h3 className="text-body-lg font-extrabold text-primary-800">
+                  약력
+                </h3>
+                <p className="mt-[9px] text-caption font-medium break-keep text-ink-soft">
+                  {speaker.bioSummary}
+                </p>
+                {speaker.bioSections.map((section) => (
+                  <div key={section.heading} className="mt-[18px]">
+                    <h4 className="text-body font-extrabold text-ink">{section.heading}</h4>
+                    <ul className="mt-[7px] space-y-[5px] text-caption font-medium break-keep text-ink-soft">
+                      {section.items.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className="shrink-0 text-ink-muted" aria-hidden="true">
+                            &bull;
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </section>
+            </div>
           </div>
         </div>
       </div>
