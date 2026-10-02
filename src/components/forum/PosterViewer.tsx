@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const POSTER = {
-  src: "/images/forum/poster.webp",
+  src: "/images/forum/poster-v2.webp",
   width: 1400,
   height: 1980,
 };
