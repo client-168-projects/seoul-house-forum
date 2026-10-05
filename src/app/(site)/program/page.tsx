@@ -7,6 +7,7 @@ import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { Button } from "@/components/ui/Button";
 import { AGENDA_ROWS } from "@/data/program";
 import { EVENT_INFO } from "@/data/event";
+import { FORUM_SOURCEBOOK } from "@/constants/files";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "프로그램",
@@ -25,7 +26,11 @@ export default function ProgramPage() {
           <h2 className="text-section-title text-ink">
             {EVENT_INFO.dateLabel}
           </h2>
-          <Button variant="primaryStrong" href="#" title="자료집 파일 준비 중입니다">
+          <Button
+            variant="primaryStrong"
+            href={FORUM_SOURCEBOOK.href}
+            download={FORUM_SOURCEBOOK.fileName}
+          >
             2026 서울주거포럼 자료집 다운로드
             <ArrowIcon direction="down" />
           </Button>

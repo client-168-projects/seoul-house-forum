@@ -6,13 +6,6 @@ import type { NeededAsset } from "@/types/asset";
  */
 export const NEEDED_ASSETS: NeededAsset[] = [
   {
-    id: "program-brochure",
-    name: "포럼 자료집 PDF",
-    description: "'2026 서울주거포럼 자료집 다운로드' 버튼이 연결할 실제 파일",
-    usedIn: "프로그램 (/program)",
-    spec: "PDF",
-  },
-  {
     id: "og-image",
     name: "OG/공유 대표 이미지",
     description: "SNS·메신저 공유 시 노출되는 대표 썸네일, 파비콘",

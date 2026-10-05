@@ -70,6 +70,14 @@ export function Button({
 
   if (props.href !== undefined) {
     const { href, children, ...anchorProps } = props as ButtonAsLink;
+    // next/link 프리페치가 대용량 파일을 미리 받아오지 않도록 파일 다운로드는 일반 anchor로 렌더링한다.
+    if (anchorProps.download !== undefined) {
+      return (
+        <a href={href} className={classes} {...anchorProps}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link href={href} className={classes} {...anchorProps}>
         {children}
