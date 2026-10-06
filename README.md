@@ -62,6 +62,7 @@ pnpm exec opennextjs-cloudflare deploy -- --env preview
   - `GET /api/notices`, `GET /api/notices/:id` 공개 / `POST`, `PATCH`, `DELETE` 관리자
   - `GET /api/board` 승인된 의견 / `POST /api/board` 의견 등록(검수 대기)
   - `GET|PATCH|DELETE /api/admin/board` 검수, `POST /api/admin/uploads` R2 업로드, `GET /api/admin/analytics` GA4
+  - `GET /api/popups/active` 노출 중인 공지 팝업 / `GET|POST /api/admin/notice-popups`, `PATCH|DELETE /api/admin/notice-popups/:id`, `PATCH /api/admin/notice-popups/:id/reorder` 관리자
   - `GET /api/files/:key` R2 파일 서빙(첨부는 항상 다운로드)
 - 인증: D1 세션(쿠키엔 랜덤 토큰, DB엔 SHA-256 해시), PBKDF2 비밀번호, IP 기준 로그인 실패 잠금
   - `src/proxy.ts` 낙관적 검사 -> `src/lib/server/auth/dal.ts`에서 페이지/API마다 재검증
@@ -72,6 +73,7 @@ pnpm exec opennextjs-cloudflare deploy -- --env preview
 - 관리자 계정: `/admin/account`에서 비밀번호 변경(변경 시 다른 기기 세션 전부 해제)
 - 검수 반려 사유는 `board_posts.review_note`에 남고 관리자 목록에서만 보인다
 - 저장하지 않고 나간 업로드(R2)는 공지 목록 조회 때 1시간에 한 번 정리한다(`cleanupOrphanUploads`, 업로드 24시간 경과분 대상)
+- 공지 팝업: `/admin/notice-popups`에서 등록. 게시 기간(KST 날짜)과 숨김 여부로 노출을 결정하고, 우선순위가 높은 팝업부터 사이트 우하단에 쌓인다. "N일간 보지 않기"는 방문자 브라우저 localStorage에 팝업 ID별로 저장한다. 이미지는 업로드 전에 투명 여백 제거와 1600px 축소를 거치고, 교체/삭제 시 이전 이미지도 지운다
 - GA4 응답은 Workers Cache API로 기간별 10분 캐시한다
 - 사이트맵은 공지 상세까지 포함하며 요청 시점에 생성한다(`src/app/sitemap.ts`)
 

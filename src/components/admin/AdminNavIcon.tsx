@@ -3,6 +3,7 @@ import type { AdminNavIcon as AdminNavIconName } from "@/constants/adminNav";
 const PATHS: Record<AdminNavIconName, string> = {
   dashboard: "M4 19V10M10 19V5M16 19v-7M22 19H2",
   notice: "M4 10v4a1 1 0 001 1h2l5 4V5L7 9H5a1 1 0 00-1 1zM16 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12",
+  popup: "M4 5h16v14H4zM4 9h16M15 13l-3 3M12 13l3 3",
   board: "M5 4h14a1 1 0 011 1v10a1 1 0 01-1 1h-6l-4 4v-4H5a1 1 0 01-1-1V5a1 1 0 011-1zM8 9h8M8 12h5",
 };
 

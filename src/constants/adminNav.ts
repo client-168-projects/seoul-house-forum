@@ -1,4 +1,4 @@
-export type AdminNavIcon = "dashboard" | "notice" | "board";
+export type AdminNavIcon = "dashboard" | "notice" | "popup" | "board";
 
 export interface AdminNavItem {
   label: string;
@@ -11,5 +11,6 @@ export interface AdminNavItem {
 export const ADMIN_NAV: AdminNavItem[] = [
   { label: "방문 통계", href: "/admin", icon: "dashboard", matchPrefix: false },
   { label: "공지사항 관리", href: "/admin/notices", icon: "notice", matchPrefix: true },
+  { label: "팝업 관리", href: "/admin/notice-popups", icon: "popup", matchPrefix: true },
   { label: "자유게시판 검수", href: "/admin/board", icon: "board", matchPrefix: true },
 ];

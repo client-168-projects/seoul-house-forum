@@ -8,7 +8,7 @@ import { createSupabaseDriver } from "@/lib/server/storage/supabase";
 import type { UploadedFile } from "@/types/notice";
 import { INVISIBLE_CHAR_PATTERN } from "@/utils/text";
 
-export type UploadKind = "attachments" | "editor";
+export type UploadKind = "attachments" | "editor" | "popup";
 
 const MB = 1024 * 1024;
 
@@ -31,9 +31,10 @@ const ATTACHMENT_EXTENSIONS = new Set([
 export const UPLOAD_LIMITS: Record<UploadKind, number> = {
   attachments: 20 * MB,
   editor: 5 * MB,
+  popup: 5 * MB,
 };
 
-const KEY_PATTERN = /^(attachments|editor)\/[0-9a-f-]{36}(\.[a-z0-9]{1,5})?$/;
+const KEY_PATTERN = /^(attachments|editor|popup)\/[0-9a-f-]{36}(\.[a-z0-9]{1,5})?$/;
 
 export class UploadError extends Error {}
 
@@ -105,9 +106,9 @@ export async function storeUpload(file: File, kind: UploadKind): Promise<Uploade
   let contentType: string;
   let extension: string;
 
-  if (kind === "editor") {
+  if (kind === "editor" || kind === "popup") {
     const signature = IMAGE_SIGNATURES.find((candidate) => candidate.matches(bytes));
-    if (!signature) throw new UploadError("JPG, PNG, GIF, WEBP 이미지만 삽입할 수 있습니다.");
+    if (!signature) throw new UploadError("JPG, PNG, GIF, WEBP 이미지만 업로드할 수 있습니다.");
     contentType = signature.type;
     extension = signature.ext;
   } else {
@@ -174,14 +175,14 @@ export async function resolveAttachments(input: unknown): Promise<UploadedFile[]
   });
 }
 
-/** 업로드 후 이 시간이 지나도 어떤 공지에서도 참조하지 않는 파일을 정리 대상으로 본다. */
+/** 업로드 후 이 시간이 지나도 어떤 공지/팝업에서도 참조하지 않는 파일을 정리 대상으로 본다. */
 const ORPHAN_MIN_AGE_MS = 24 * 60 * 60 * 1000;
 const CLEANUP_INTERVAL_MS = 60 * 60 * 1000;
 const MAX_CANDIDATES = 100;
 
 /**
- * 공지를 저장하지 않고 나간 경우 남는 파일을 정리한다.
- * 공지 목록을 열 때 호출되며, claimPeriodicTask 덕분에 실제 실행은 1시간에 한 번이다.
+ * 공지/팝업을 저장하지 않고 나간 경우 남는 파일을 정리한다.
+ * 공지 목록과 팝업 관리 화면을 열 때 호출되며, claimPeriodicTask 덕분에 실제 실행은 1시간에 한 번이다.
  */
 export async function cleanupOrphanUploads(): Promise<number> {
   if (!(await claimPeriodicTask("cleanup-orphan-uploads", CLEANUP_INTERVAL_MS))) return 0;
@@ -204,6 +205,17 @@ export async function cleanupOrphanUploads(): Promise<number> {
       .all<{ r2_key: string }>();
     const usedKeys = new Set(used.results.map((row) => row.r2_key));
     orphans.push(...attachmentKeys.filter((key) => !usedKeys.has(key)));
+  }
+
+  const popupKeys = candidates.results.filter((row) => row.kind === "popup").map((row) => row.key);
+  if (popupKeys.length > 0) {
+    const placeholders = popupKeys.map(() => "?").join(",");
+    const used = await db
+      .prepare(`SELECT image_key FROM notice_popups WHERE image_key IN (${placeholders})`)
+      .bind(...popupKeys)
+      .all<{ image_key: string }>();
+    const usedKeys = new Set(used.results.map((row) => row.image_key));
+    orphans.push(...popupKeys.filter((key) => !usedKeys.has(key)));
   }
 
   // 에디터 이미지는 본문 JSON 안에 URL로만 남아 있어 키 단위로 조회한다.
