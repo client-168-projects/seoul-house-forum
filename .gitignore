@@ -45,8 +45,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# project-local docs / mockups (not meant to be tracked)
-CLAUDE.md
+# local mockups (not meant to be tracked)
 /temp
 
 # SQL (D1 마이그레이션/시드) - 저장소에 올리지 않는다
