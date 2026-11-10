@@ -2,7 +2,7 @@ import { Panel } from "@/components/admin/analytics/Panel";
 import type { NamedMetric } from "@/types/analytics";
 import { cityLabel, deviceLabel, formatNumber } from "@/utils/analyticsFormat";
 
-/** 기기 색은 기기에 고정한다(순위가 아니라 대상 기준). 검증된 범주색 3종을 쓴다. */
+/** 순위가 바뀌어도 같은 기기는 같은 색으로 보이도록 기기별로 색을 고정한다. */
 const DEVICE_COLORS: Record<string, string> = {
   mobile: "var(--color-chart-1)",
   desktop: "var(--color-chart-2)",

@@ -33,10 +33,7 @@ export default async function BoardPage() {
 
       <section className="relative pt-8 pb-24 lg:pt-[36px] lg:pb-[240px]">
         <Container className="relative">
-          {/*
-            폼은 피그마대로 600px을 유지한다. 타이틀이 길어 lg 폭에서는 옆에 들어가지 않으므로
-            2단 배치는 xl부터 하고, 그 아래는 타이틀 위·폼 아래로 쌓는다.
-          */}
+          {/* 타이틀이 길어 lg 폭에서는 600px 폼과 나란히 들어가지 않으므로 2단 배치는 xl부터 한다. */}
           <div className="grid gap-8 xl:grid-cols-[1fr_600px] xl:items-center xl:gap-12">
             <div className="text-center xl:text-left">
               <BoardHeadline />
@@ -57,10 +54,7 @@ export default async function BoardPage() {
   );
 }
 
-/**
- * 히어로와 본문에 걸쳐 깔리는 장식(피그마 자유게시판 좌/우/우하단). SVG에 투명도 0.2가 들어 있다.
- * PC 위치는 1920px 목업 기준 페이지 상단에서의 거리, 모바일은 작게 줄여 가장자리에 붙인다.
- */
+/** 히어로와 본문에 걸쳐 깔리는 장식. 투명도는 SVG 파일 자체에 들어 있다. */
 function BoardBackdrop() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0">

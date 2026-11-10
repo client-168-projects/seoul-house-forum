@@ -7,10 +7,6 @@ interface NoticeTableProps {
   emptyMessage?: string;
 }
 
-/**
- * 목업 기준: 상단 2px #707070 테두리, 행 높이 110px(1px #8c8c8c 구분선),
- * 번호 컬럼 108px / 제목 / 날짜 우측 정렬.
- */
 export function NoticeTable({ notices, emptyMessage = "등록된 게시글이 없습니다." }: NoticeTableProps) {
   if (notices.length === 0) {
     return (

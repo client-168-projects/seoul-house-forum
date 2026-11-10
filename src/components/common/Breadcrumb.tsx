@@ -6,10 +6,6 @@ interface BreadcrumbProps {
   items: string[];
 }
 
-/**
- * "HOME > 그룹 > 현재 페이지" 경로 표시. 목업 기준 우측 정렬,
- * 바 높이 70px(하단 1px #eee), 텍스트 14px.
- */
 export function Breadcrumb({ items }: BreadcrumbProps) {
   return (
     <nav aria-label="breadcrumb" className="border-b border-line-faint bg-white">

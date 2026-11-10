@@ -6,14 +6,7 @@ interface SpeakerCardProps {
   onSelect: (speaker: Speaker) => void;
 }
 
-/**
- * 목업(temp/연사소개.png) 기준 1920px 프레임 수치
- * - 배지 32px 높이(primary-800), 세션명 22px, 카드 580x584(정사각에 가깝게)
- * - 기본 배경 #F5F5F5 / 마우스 오버 시 primary-800 + 소속 노출
- * - 인물 컷아웃은 카드 하단에 밀착하고 높이 92.5%, 좌우 중앙. 폭은 인물마다 비율대로 달라진다.
- *
- * 사진이 아직 없으면 회색 사각형으로 대체하고, 약력까지 없는 인물은 준비 중 안내만 보여 준다.
- */
+/** 사진이 없으면 회색 사각형으로 대체하고, 약력까지 없는 인물은 준비 중 안내만 보여 준다. */
 export function SpeakerCard({ speaker, onSelect }: SpeakerCardProps) {
   const hasProfile = Boolean(speaker.bioSummary);
 

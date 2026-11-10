@@ -1,10 +1,6 @@
 import type { ReactNode } from "react";
 
-/**
- * 자유게시판 질문 타이틀. 나머지는 Medium으로 한 단계 낮추고, 핵심어(서울 전월세 시장)만 Bold로 키워
- * 붓 터치 밑줄과 강조 표시로 눈에 띄게 한다(Gmarket Sans는 300/500/700만 있다).
- * 폼 옆 좁은 열(xl 이상)과 모바일은 4줄, 가로가 넉넉한 태블릿 단독 배치는 3줄로 끊는다.
- */
+/** 폼 옆 좁은 열(xl 이상)과 모바일은 4줄, 가로가 넉넉한 태블릿 단독 배치는 3줄로 끊는다. */
 export function BoardHeadline() {
   return (
     <h2 className="font-heading text-section-title leading-[1.3] font-medium break-keep">

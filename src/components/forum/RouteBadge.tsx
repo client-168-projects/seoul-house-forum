@@ -6,7 +6,6 @@ interface RouteBadgeProps {
   className?: string;
 }
 
-/** 오시는 길의 노선/방면 배지. 높이 28px, 좌우 14px, 알약형. 피그마 SHF/Body2_bold(16/800). */
 export function RouteBadge({ children, tone = "accent", className }: RouteBadgeProps) {
   return (
     <span
@@ -21,7 +20,6 @@ export function RouteBadge({ children, tone = "accent", className }: RouteBadgeP
   );
 }
 
-/** ">" 로 이어지는 경로 표기. 피그마 SHF/Body2_medium(16/600). */
 export function RouteSteps({ steps }: { steps: string[] }) {
   return (
     <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-body font-semibold text-ink">

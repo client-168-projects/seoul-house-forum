@@ -10,11 +10,6 @@ const INFO_ROWS = [
   { label: "E-mail.", value: EVENT_INFO.inquiryEmail },
 ];
 
-/**
- * 목업 기준 수치 (1920px 프레임)
- * - 배경 #ededed, 상단 여백 60px, 브라켓 로고 251x39, 정보 15px·행 간격 29px
- * - 하단 구분선은 화면 전체 폭(full bleed) 1px primary-600
- */
 export function Footer() {
   return (
     <footer className="bg-footer-bg text-ink">

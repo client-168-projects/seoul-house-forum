@@ -2,7 +2,7 @@ export const OPINION_MAX_LENGTH = 200;
 export const OPINION_MIN_LENGTH = 5;
 export const AUTHOR_MAX_LENGTH = 10;
 
-/** 쪽지 기울기 범위(deg). 피그마에서 가장 많이 기운 쪽지가 대략 7도 안팎이다. */
+/** 쪽지 기울기 범위(deg) */
 export const NOTE_MAX_TILT_DEG = 7;
 export const NOTE_MIN_TILT_DEG = 1.5;
 
@@ -17,7 +17,6 @@ export const BOARD_DUPLICATE_WINDOW_HOURS = 24;
 /** 수집한 IP, User-Agent를 파기하기까지의 기간 */
 export const BOARD_PERSONAL_DATA_RETENTION_DAYS = 30;
 
-/** 피그마 기준 첫 화면 쪽지 수(4+4+4+2) */
 export const BOARD_PUBLIC_PAGE_SIZE = 14;
 export const BOARD_ADMIN_PAGE_SIZE = 20;
 

@@ -1,6 +1,6 @@
 export type ArrowDirection = "right" | "left" | "down";
 
-/** Figma icon/arrow_hover(24x24)의 path 원본. 방향은 회전으로만 파생시킨다. */
+/** 24x24 기준 path. 다른 방향은 회전으로 만든다. */
 const ARROW_PATH =
   "M11.2212 5.1748L17.3462 11.2998H4.39502V12.7002H17.3501L11.2212 18.8281L12.2114 19.8184L20.0288 12.002L12.2114 4.18457L11.2212 5.1748Z";
 

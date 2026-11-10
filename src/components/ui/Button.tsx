@@ -3,12 +3,8 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import { cn } from "@/utils/cn";
 
 /**
- * Figma 버튼 디자인 시스템(node 2:595) 기준.
- * - 사이즈는 높이로 고정: small 36 / medium 42 / large 56, 모서리는 전부 직각
- * - 타이포는 사이즈가 아니라 타입이 결정한다. primaryStrong만 SUIT ExtraBold 16px(text-body)이고
- *   나머지 타입은 SUIT Medium 20px + 자간 1px이다.
- * - pill은 디자인 시스템에 없는 형태로, 참가등록 목업(temp/참가등록.png)의 보라색 알약 버튼 전용이다.
- *   자체 높이와 모서리를 가지므로 size를 무시한다.
+ * 글자 크기는 size가 아니라 variant가 정한다.
+ * pill은 참가등록 페이지 전용 형태로, 자체 높이와 모서리를 가지므로 size를 무시한다.
  */
 type Variant =
   | "primaryDefault"

@@ -48,10 +48,6 @@ export async function generateMetadata({ params }: PageProps<"/community/notice/
   };
 }
 
-/**
- * 공지사항 상세. 목록 표의 2px #707070 상단선을 그대로 이어받아
- * 제목 - 본문 - 첨부 - 이전/다음 - 목록 버튼 순으로 쌓는다.
- */
 export default async function NoticeDetailPage({ params }: PageProps<"/community/notice/[id]">) {
   const notice = await loadNotice((await params).id);
   if (!notice) notFound();

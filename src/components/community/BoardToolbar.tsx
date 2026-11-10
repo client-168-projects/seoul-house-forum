@@ -7,10 +7,6 @@ interface BoardToolbarProps {
   field?: "title" | "content";
 }
 
-/**
- * 목업(temp/소통의장.png) 기준 1920px 프레임 수치
- * - 컨트롤 높이 56px, 알약형 / 셀렉트 197px, 입력 303px, 검색 버튼 97px
- */
 export function BoardToolbar({ total, page, action, query, field = "title" }: BoardToolbarProps) {
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

@@ -9,12 +9,6 @@ interface SpeakerModalProps {
   onClose: () => void;
 }
 
-/**
- * 목업(temp/연사소개-모달.png) 기준 1920px 프레임 수치
- * - 패널 996x634, 좌우 여백 40px, 사진 정사각 + 간격 36px + 본문 437px
- * - 타이포는 피그마 기준: 이름/소제목 Body1_extra bold(20px/800),
- *   소속 Body2_medium(16px/600), 본문 Small_medium(14px/500)
- */
 export function SpeakerModal({ speaker, onClose }: SpeakerModalProps) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

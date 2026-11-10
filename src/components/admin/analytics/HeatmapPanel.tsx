@@ -4,7 +4,6 @@ import { formatNumber, WEEKDAY_LABELS } from "@/utils/analyticsFormat";
 /** 월요일부터 보여 주는 편이 업무 패턴을 읽기 쉽다. GA4 dayOfWeek는 0=일요일. */
 const DISPLAY_ORDER = [1, 2, 3, 4, 5, 6, 0];
 
-/** 단일 색(보라) 명도 단계로 크기를 표현하는 순차 색상 */
 const STEPS = ["#f3eefd", "#e7defa", "#d5c9ec", "#b7a4d5", "#8971b1", "#6c4e9d", "#43217d", "#330c53"];
 
 export function HeatmapPanel({ heatmap }: { heatmap: number[][] }) {

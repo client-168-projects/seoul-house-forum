@@ -8,13 +8,6 @@ import { NAV_GROUPS, SITE_NAME } from "@/constants/nav";
 import { Container } from "@/components/common/Container";
 import { cn } from "@/utils/cn";
 
-/**
- * 목업(temp/header.png) 기준 수치 (1920px 프레임)
- * - 로고 컬럼 250px + 메뉴 4컬럼 각 237.5px (= 1200px 컨테이너)
- * - 로고 상단 여백 31px(22px 2줄), 1depth는 상단 여백 43px로 로고와 중앙 정렬
- * - 메가메뉴 펼침 시 흰 패널 전체 높이 240px, 2depth 행 간격 29px
- * - 타이포는 피그마 기준: 1depth SHF/Body2_bold(16px/150%/800), 2depth SHF/Small_bold(14px/150%/700)
- */
 const WHITE_LOGO = "/images/hero/logos/logo-white.svg";
 const PURPLE_LOGO = "/images/hero/logos/logo-purple.svg";
 

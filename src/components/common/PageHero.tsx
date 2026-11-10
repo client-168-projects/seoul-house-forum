@@ -13,7 +13,7 @@ interface PageHeroProps {
   variant?: "default" | "overlay";
 }
 
-/** 모바일/태블릿은 좌우 장식을 작고 옅게 깔아 제목 가독성을 해치지 않게 한다(M02 시안). */
+/** 모바일/태블릿은 좌우 장식을 작고 옅게 깔아 제목 가독성을 해치지 않게 한다. */
 export function PageHero({
   title,
   children,

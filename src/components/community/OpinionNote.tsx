@@ -8,11 +8,7 @@ interface OpinionNoteProps {
   post: OpinionPost;
 }
 
-/**
- * 피그마 쪽지(PC): 폭 280(max), 패딩 32, 내부 간격 32, 라운드 24, 1px 테두리 + 드롭 섀도.
- * 모바일은 2열 배치(M02 시안)에 맞춰 패딩/글자를 줄인다.
- * 기울기와 클릭은 감싸는 버튼이 담당하므로, 버튼 안에 들어갈 수 있게 span(phrasing) 요소로만 구성한다.
- */
+/** 기울기와 클릭은 감싸는 버튼이 담당하므로, 버튼 안에 들어갈 수 있게 span(phrasing) 요소로만 구성한다. */
 export function OpinionNote({ post }: OpinionNoteProps) {
   const tone = NOTE_TONE_CLASSES[getNoteTone(post.id)];
 

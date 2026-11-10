@@ -22,14 +22,6 @@ const INTRO_LINES = [
   "지금 사전등록하고 함께해 주세요.",
 ];
 
-/**
- * 목업(temp/참가등록.png) 기준 1920px 프레임 수치
- * 타이포는 피그마 기준
- * - 제목 H1(44/800) / 부제 H3(30/800, Purple/Deep) / 본문 H4(22/800)
- * - 카드 제목 H2(26/800) / 일시·장소 Body1(20/800) / 버튼 H4(22/800, 흰색)
- * - 문의 정보 Body2_bold(16/800), 괄호 줄 Body2_medium(16/600)
- * - 등록 카드 603x535, bg primary-50, 버튼 343x62 알약형
- */
 export default function RegisterPage() {
   return (
     <>

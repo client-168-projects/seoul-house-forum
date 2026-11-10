@@ -12,7 +12,6 @@ interface OpinionNoteModalProps {
   onClose: () => void;
 }
 
-/** 피그마 팝업_4종: 스티커 색의 바탕 + 한 톤 진한 본문 상자, 하단에 지역구와 마스킹된 이름 */
 export function OpinionNoteModal({ post, onClose }: OpinionNoteModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const contentId = useId();
@@ -33,7 +32,6 @@ export function OpinionNoteModal({ post, onClose }: OpinionNoteModalProps) {
       aria-label="의견 크게 보기"
       onClose={onClose}
       onClick={(event) => {
-        // 모달 바깥(backdrop)을 누르면 닫는다.
         if (event.target === event.currentTarget) onClose();
       }}
       className={cn(

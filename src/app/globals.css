@@ -2,16 +2,14 @@
 
 /*
  * 디자인 토큰 (Tailwind v4 CSS-first 설정)
- * temp/ 목업을 1920px 프레임 / 1200px 컨테이너 기준으로 픽셀 측정해 추출한 값이다.
  *
- * 스타일 가이드의 컬러 6종과 아래 토큰의 대응:
- *   purple   → primary-600 #6c4e9d  (히어로 배경, 버튼, 활성 알약)
- *   deep     → primary-950 #330c53  (로고, 활성 내비, accent 버튼 글자)
- *   lime     → accent      #c8ea3d  (CTA, 노선 배지)
- *   lavender → primary-400 #8971b1  (비활성 알약)
- *   paper    → primary-50  #f3eefd  (연보라 면)
- *   pink     → pink        #f0a8e8  (일러스트 전용, UI 미사용)
- * hex는 목업 픽셀에서 추출한 값이라 가이드 원본과 다를 수 있다.
+ * 스타일 가이드 컬러와 토큰의 대응
+ *   purple    primary-600  히어로 배경, 버튼, 활성 알약
+ *   deep      primary-950  로고, 활성 내비, accent 버튼 글자
+ *   lime      accent       CTA, 노선 배지
+ *   lavender  primary-400  비활성 알약
+ *   paper     primary-50   연보라 면
+ *   pink      pink         일러스트 전용
  */
 :root {
   --color-primary-50: #f3eefd;
@@ -46,10 +44,10 @@
 
   /* 일러스트 계열. 현재 UI에는 쓰이지 않고 팔레트 정의용으로만 둔다. */
   --color-pink: #f0a8e8;
-  /* 피그마 Pink/Light. 오시는 길 두 번째 버스 정류장 배지 */
+  /* 오시는 길 두 번째 버스 정류장 배지 */
   --color-pink-light: #a14879;
 
-  /* 자유게시판 쪽지 4종 (피그마 Lightest=면, Dark/Light=테두리, Medium/Light=지역구·작성자) */
+  /* 자유게시판 쪽지 4종: 면 / 테두리(edge) / 지역구·작성자 글자(ink) */
   --color-note-pink: #fff3fb;
   --color-note-pink-edge: #a14879;
   --color-note-pink-ink: #a14879;
@@ -62,7 +60,7 @@
   --color-note-green: #eefadf;
   --color-note-green-edge: #b5df6c;
   --color-note-green-ink: #5b7f1f;
-  /* 쪽지 확대 모달 안쪽 본문 상자 (피그마 팝업_4종) */
+  /* 쪽지 확대 모달 안쪽 본문 상자 */
   --color-note-pink-soft: #ffe0f0;
   --color-note-yellow-soft: #fdfcb6;
   --color-note-lavender-soft: #e3d7fb;
@@ -70,7 +68,7 @@
 
   /* 관리자 콘솔 배경. 흰 패널이 떠 보이도록 보라 기운이 도는 옅은 회색을 쓴다. */
   --color-admin-canvas: #f5f3fa;
-  /* 관리자 차트 범주색 3종. dataviz 검증 스크립트(light, #fcfcfb 기준) 전 항목 통과 */
+  /* 관리자 차트 범주색 */
   --color-chart-1: #7a4fc4;
   --color-chart-2: #d0579a;
   --color-chart-3: #6f9a1a;
@@ -138,38 +136,37 @@
   --font-heading: var(--font-gmarket);
 
   /*
-   * 타이포 스케일 - temp/ 목업을 1920px 프레임으로 정규화해 실측한 값이다.
-   * 괄호 안은 피그마 토큰명. 홈 히어로 타이틀/일시는 자체 인라인 스케일을 쓰므로
-   * 이 토큰을 사용하지 않는다(page.tsx).
+   * 타이포 스케일. 각 줄 끝의 SHF 표기는 피그마 텍스트 스타일 이름이다.
+   * 홈 히어로 타이틀/일시는 이 토큰 대신 (site)/page.tsx의 인라인 스케일을 쓴다.
    */
   --text-page-title: clamp(36px, 1.5rem + 2.5vw, 64px); /* 서브 히어로 h1 */
   --text-page-title--line-height: 1.2;
   --text-page-title--font-weight: 700;
   --text-page-title--letter-spacing: -0.03em;
 
-  --text-section-title: clamp(28px, 1.5rem + 1.5vw, 44px); /* 피그마 SHF/H1 */
+  --text-section-title: clamp(28px, 1.5rem + 1.5vw, 44px); /* SHF/H1 */
   --text-section-title--line-height: 1.3;
   --text-section-title--font-weight: 800;
 
-  --text-subtitle: clamp(22px, 1.25rem + 0.75vw, 30px); /* 피그마 SHF/H3 */
+  --text-subtitle: clamp(22px, 1.25rem + 0.75vw, 30px); /* SHF/H3 */
   --text-subtitle--line-height: 1.3;
   --text-subtitle--font-weight: 800;
 
-  --text-card-title: clamp(20px, 1.125rem + 0.625vw, 26px); /* 피그마 SHF/H2 */
+  --text-card-title: clamp(20px, 1.125rem + 0.625vw, 26px); /* SHF/H2 */
   --text-card-title--line-height: 1.3;
   --text-card-title--font-weight: 800;
 
-  --text-h4: clamp(18px, 1rem + 0.5vw, 22px); /* 피그마 SHF/H4 - 연사 카드 제목, 오시는길 장소명 */
+  --text-h4: clamp(18px, 1rem + 0.5vw, 22px); /* SHF/H4 */
   --text-h4--line-height: 1.5;
   --text-h4--font-weight: 800;
 
-  --text-body-lg: clamp(16px, 0.9rem + 0.35vw, 20px); /* 피그마 SHF/Body1 */
+  --text-body-lg: clamp(16px, 0.9rem + 0.35vw, 20px); /* SHF/Body1 */
   --text-body-lg--line-height: 1.5;
 
-  --text-body: clamp(14px, 0.8rem + 0.25vw, 16px); /* 피그마 SHF/Body2 */
+  --text-body: clamp(14px, 0.8rem + 0.25vw, 16px); /* SHF/Body2 */
   --text-body--line-height: 1.5;
 
-  --text-caption: clamp(12px, 0.75rem + 0.15vw, 14px); /* 피그마 SHF/Small */
+  --text-caption: clamp(12px, 0.75rem + 0.15vw, 14px); /* SHF/Small */
   --text-caption--line-height: 1.5;
 }
 
@@ -188,7 +185,6 @@ body {
     var(--color-primary-900) 100%
   );
 }
-
 
 /*
  * 공지 본문(TipTap 렌더링 결과)과 관리자 에디터가 같은 규칙을 공유한다.

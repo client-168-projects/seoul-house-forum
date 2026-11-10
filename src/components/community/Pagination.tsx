@@ -9,7 +9,6 @@ interface PaginationProps {
   hrefForPage: (page: number) => string;
 }
 
-/** 목업 기준: 현재 페이지 32px 원형(primary-600), 번호 간격 10px, 양옆 이동 화살표 */
 export function Pagination({ currentPage, totalPages, hrefForPage }: PaginationProps) {
   if (totalPages <= 1) return null;
   const pages = getPageWindow(currentPage, totalPages);

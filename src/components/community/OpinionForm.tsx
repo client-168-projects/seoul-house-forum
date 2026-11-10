@@ -217,7 +217,6 @@ export function OpinionForm({ turnstileSiteKey }: OpinionFormProps) {
               className="h-10 w-[128px] rounded-full border border-primary-300 px-4 text-caption text-ink placeholder:text-ink-muted sm:w-[140px]"
             />
 
-            {/* 태블릿/PC: 카드 안 오른쪽 */}
             <SubmitButton
               label={buttonLabel}
               coolingDown={cooldown.isCoolingDown}
@@ -227,7 +226,6 @@ export function OpinionForm({ turnstileSiteKey }: OpinionFormProps) {
           </div>
         </div>
 
-        {/* 모바일: M02 시안처럼 카드 밖 전체 폭 라임 버튼 */}
         <SubmitButton
           label={buttonLabel}
           coolingDown={cooldown.isCoolingDown}

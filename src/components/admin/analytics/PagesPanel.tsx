@@ -2,7 +2,6 @@ import { Panel } from "@/components/admin/analytics/Panel";
 import type { PageMetric } from "@/types/analytics";
 import { formatNumber } from "@/utils/analyticsFormat";
 
-/** 순위 + 막대를 행 배경에 깐 랭킹 표. 막대는 단일 색(크기)이고 값은 항상 글자로도 표시한다. */
 export function PagesPanel({ pages }: { pages: PageMetric[] }) {
   const max = Math.max(1, ...pages.map((page) => page.views));
 

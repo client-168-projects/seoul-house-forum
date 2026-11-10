@@ -1,6 +1,6 @@
 import type { OpinionNoteTone } from "@/types/board";
 
-/** 피그마 스티커 4종(Y/G/P/V). 쪽지 카드와 확대 모달이 같은 색 체계를 공유한다. */
+/** 쪽지 카드와 확대 모달이 같은 색 체계를 공유한다. */
 export const NOTE_TONE_CLASSES: Record<OpinionNoteTone, { paper: string; ink: string; inner: string }> = {
   pink: {
     paper: "bg-note-pink border-note-pink-edge",

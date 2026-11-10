@@ -41,11 +41,6 @@ const ROWS: OverviewRow[] = [
   },
 ];
 
-/**
- * 목업(temp/event-info.png) 기준 1920px 프레임 수치
- * - 본문 블록 1104px 중앙 정렬 = 표 790px + 간격 40px + 포스터 274px(A4 비율)
- * - 표 행 높이 65px, 홀수 행 배경 #F5F5F5 + primary-800 배지 / 짝수 행 흰 배경 + primary-600 배지
- */
 export default function ForumOverviewPage() {
   return (
     <>

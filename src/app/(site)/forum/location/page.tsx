@@ -15,12 +15,6 @@ export const metadata: Metadata = buildPageMetadata({
   keywords: ["한국프레스센터 오시는 길", "프레스센터 국제회의장 위치", "시청역 프레스센터", "서울주거포럼 장소"],
 });
 
-/**
- * 목업(temp/오시는길.png) 기준 1920px 프레임 수치
- * - 주소 바 높이 65px, primary-950(#330c53) 배경 + 흰 글자(장소명 SHF/H4 22px/800)
- * - 지도 프레임 1200x561px, 구글 지도 임베드
- * - 교통 섹션: 제목 컬럼 163px + 내용 컬럼, 섹션 사이 1px #eee 구분선
- */
 export default function ForumLocationPage() {
   return (
     <>

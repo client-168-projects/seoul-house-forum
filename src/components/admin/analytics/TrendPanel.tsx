@@ -18,10 +18,7 @@ const METRICS: { key: MetricKey; label: string; total: (report: AnalyticsReport,
   { key: "pageViews", label: "페이지뷰", total: (report, previous) => (previous ? report.previousTotals : report.totals).pageViews },
 ];
 
-/**
- * 한 번에 한 지표만 그린다(이중 축 금지). 지표 탭이 범례 역할을 겸한다.
- * 상단 숫자는 카드가 아니라 선택된 지표의 헤드라인으로, 차트와 한 몸이다.
- */
+/** 단위가 다른 지표를 한 축에 섞지 않도록 한 번에 한 지표만 그리고, 지표 탭이 범례를 겸한다. */
 export function TrendPanel({ report }: { report: AnalyticsReport }) {
   const [metric, setMetric] = useState<MetricKey>("activeUsers");
   const selected = METRICS.find((item) => item.key === metric) ?? METRICS[0];

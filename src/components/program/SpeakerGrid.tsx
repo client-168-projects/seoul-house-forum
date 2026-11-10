@@ -9,7 +9,6 @@ interface SpeakerGridProps {
   sections: SpeakerSection[];
 }
 
-/** 목업 기준: 2열, 컬럼 간격 40px, 행 간격 42px */
 export function SpeakerGrid({ sections }: SpeakerGridProps) {
   const [selected, setSelected] = useState<Speaker | null>(null);
 

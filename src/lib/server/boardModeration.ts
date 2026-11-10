@@ -25,7 +25,6 @@ export interface OpinionInput {
 
 export type ValidationResult = { ok: true; value: OpinionInput } | { ok: false; message: string };
 
-
 function compact(value: string) {
   return value.toLowerCase().replace(/[\s.\-_*~!?,]/g, "");
 }
